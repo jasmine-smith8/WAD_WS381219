@@ -1,0 +1,9 @@
+.user-footer {
+    background-color: #710000; /* Dark Red */
+    text-align: center;
+    font-weight: 700;
+    margin-top: auto;
+    border-radius: 15px;
+    padding: 10px 20px;
+    color: white;
+}

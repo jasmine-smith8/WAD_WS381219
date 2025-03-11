@@ -1,0 +1,87 @@
+.admin-navbar {
+    background-color: #710000; /* Dark Red */
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    height: 60px;
+}
+
+.admin-navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #710000;
+}
+
+.admin-navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.admin-navbar .navbar-brand h1 {
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.admin-navbar .navbar-toggler {
+    border: none;
+}
+
+.admin-navbar .navbar-nav {
+    gap: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.admin-navbar .navbar-nav .nav-link {
+    color: white;
+    margin: 0 10px;
+    text-emphasis: none;
+    text-decoration: none;
+}
+
+.admin-navbar .navbar-nav .nav-link:hover {
+    color: #F0CACA; 
+    text-decoration: none;
+}
+
+.admin-navbar .form-control {
+    border: none;
+    border-radius: 15px;
+    margin-left: 25px;
+}
+
+.admin-navbar .navbar-links {
+    display: inline-flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    gap: 25px;
+    margin: 0;
+}
+
+.admin-navbar .nav-link {
+    color: white;
+    text-decoration: none;
+}
+
+.admin-navbar .nav-link:hover {
+    color: #F0CACA;
+}
+
+.admin-navbar .nav-item .btn{
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: none;
+    font-family: "Space Mono", serif;
+    font-size: medium;
+}
+
+.admin-navbar .btn:hover {
+    color: #F0CACA;
+}

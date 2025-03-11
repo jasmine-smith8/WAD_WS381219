@@ -1,0 +1,65 @@
+body {
+    background-color: #D99293;; 
+    font-family: space mono, serif;
+}
+
+.main-content {
+    margin-top: 70px;
+}
+
+h1, h2 {
+    color: #EC8787; /* Dark Red */
+    text-align: center;
+}
+p{
+    color: #710000; /* Light Red */
+    text-align: center;
+}
+
+.table {
+    margin-top: 1rem;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    color: #710000 /* Light Red */
+}
+.form-label {
+    color: #710000; /* Light Red */
+}
+
+.btn-group .btn {
+    margin-right: 0.5rem;
+}
+
+.btn-primary {
+    background-color: #710000; /* Light Red */
+    border-color: #D99293;
+}
+
+.btn-primary:hover {
+    background-color: #EC8787; /* Dark Red */
+    border-color: #EC8787;
+}
+.submit-button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #710000; /* Light Red */
+    border-color: #D99293;
+    border-radius: 0.3rem;
+    color: #FFFFFF;
+}
+.submit-button:hover {
+    background-color: #EC8787; /* Dark Red */
+    border-color: #EC8787;
+}
+
+.modal-content {
+    background-color: #FFEEEE; /* Light Red */
+    border: 1px solid #D99293;
+    border-radius: 0.3rem;
+}
+
+.modal-header {
+    border-bottom: 1px solid #D99293;
+}

@@ -2,17 +2,17 @@
 
 require_once("_connect.php");
 
-if (!isset($_POST['username']) || !isset($_POST['password'])) die("Missing POST data");
+if (!isset($_POST['email']) || !isset($_POST['password'])) die("Missing POST data");
 
-$username = $_POST['username'];
+$email = $_POST['email'];
 $password = $_POST['password'];
 
 // Input Validation to be added later :)
 
-$SQL = "SELECT * FROM `users` WHERE `username` = ?";
+$SQL = "SELECT * FROM `users` WHERE `email` = ?";
 
 $stmt = mysqli_prepare($connect, $SQL);
-mysqli_stmt_bind_param($stmt, "s", $username);
+mysqli_stmt_bind_param($stmt, "s", $email);
 mysqli_stmt_execute($stmt);
 
 // Get the result from the MySQL query
@@ -30,7 +30,7 @@ if (mysqli_num_rows($result) == 1)
         @session_start();
 
         $_SESSION['userID'] = $USER['userID'];
-        $_SESSION['username'] = $USER['username'];
+        $_SESSION['email'] = $USER['email'];
         $_SESSION['firstName'] = $USER['firstName'];
         $_SESSION['lastName'] = $USER['lastName'];
 
@@ -40,4 +40,4 @@ if (mysqli_num_rows($result) == 1)
     }
 }
 
-echo "Invalid username or password!";
+echo "Invalid email or password!";

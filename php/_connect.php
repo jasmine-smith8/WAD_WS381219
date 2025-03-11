@@ -3,12 +3,12 @@
 // Database connection - in an ideal world, this would be in a separate .env file, but for the sake of simplicity, it's here 😇
 // These credentials are for Jack Biggs' database, please change them to your own credentials
 $host = "plesk.remote.ac";
-$username = "WS381180_WEBDEV";
-$password = "H6K@3I_ils0lqnwc";
-$dbname = "WS381180_WEBDEV";
+$email = "WS381219_JasmineSmith";
+$password = "29Vfb00_s";
+$dbname = "WS381219_WAD";
 
 // Connect to the database and return the connection object
-$connect = mysqli_connect($host, $username, $password, $dbname);
+$connect = mysqli_connect($host, $email, $password, $dbname);
 
 // If the connection fails, kill the script and output an error message
 if (!$connect)

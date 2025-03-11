@@ -1,0 +1,120 @@
+.user-navbar {
+    background-color: #710000; /* Dark Red */
+    border-radius: 15px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.user-navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.user-navbar .navbar-brand h1 {
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.user-navbar .navbar-toggler {
+    border: none;
+}
+
+.user-navbar .navbar-nav {
+    gap: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.user-navbar .navbar-nav .nav-link {
+    color: white;
+    margin: 0 10px;
+    text-emphasis: none;
+    text-decoration: none;
+}
+
+.user-navbar .navbar-nav .nav-link:hover {
+    color: #F0CACA; 
+    text-decoration: none;
+}
+
+.user-navbar .form-control {
+    border: none;
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-left: 25px;
+}
+
+.user-navbar .search-container {
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.user-navbar .search {
+    display: flex;
+    align-items: center;
+}
+
+.user-navbar .search-input {
+    border: none;
+    font-family: space mono, serif;
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+.user-navbar .search-button {
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: white;
+}
+
+.user-navbar .search-container .search-button:hover {
+    background-color: #F0CACA;
+}
+
+.user-navbar .navbar-links {
+    display: inline-flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    gap: 15px;
+    margin: 0;
+}
+
+.user-navbar .nav-link {
+    color: white;
+    text-decoration: none;
+}
+
+.user-navbar .nav-link:hover {
+    color: #F0CACA;
+}
+
+.user-navbar .nav-item .btn{
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: none;
+    font-family: "Space Mono", serif;
+    font-size: medium;
+}
+
+.user-navbar .btn:hover {
+    color: #F0CACA;
+}

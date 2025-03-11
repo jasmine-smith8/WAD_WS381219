@@ -14,11 +14,11 @@ if (!isset($_SESSION['userRole']))
 if ($_SESSION['userRole'] != 'admin')
 {
     http_response_code(403);
-    die("You shall not pass!");
+    die("403 Forbidden: You are not an admin!");
 }
 
 // Include the connection file, which contains the $connect objects - this saves us from having to retype the connection code every time
-require_once("./php/_connect.php");
+require_once("../php/_connect.php");
 
 // SQL Query
 $SQL = "SELECT * FROM users";
@@ -43,22 +43,35 @@ if (mysqli_num_rows($query) == 0)
     <title>Users Platform</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="/admin-pages/styles/adminDashboard.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+        $("#admin-navbar").load("/admin-pages/components/admin-navbar.html");
+        $("#user-footer").load("./pages/components/user-footer.html");
+    });
+  </script>
 </head>
-
-<body class="bg-warning">
-    <div class="container bg-light p-4 mt-4 shadow">
-        <h1>My Users Platform</h1>
+<body class="main-content">
+    <header id="admin-navbar"></header>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    <script src="./scripts/adminDashScripts.js"></script>
+    <div class="container">
+        <h1>Staff Management</h1>
         <hr>
-        <p>These are my users in my database:</p>
 
         <table class="table" id="usersTable">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Username</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Access Level</th>
                     <th scope="col">Options</th>
                 </tr>
             </thead>
@@ -71,17 +84,13 @@ if (mysqli_num_rows($query) == 0)
                 {
                     ?>
                 <tr>
-                    <th scope="row"><img class="rounded-circle"
-                            src="https://proficon.appserver.uk/api/identicon/<?= $row['userID'] ?>.svg"
-                            alt="Icon for User" width="50" height="50"></th>
+                    <th scope="row"><i class="fa-solid fa-user"></i><?= $row['userID'] ?></th>
                     <td><?= htmlentities($row['firstName']) ?></td>
                     <td><?= htmlentities($row['lastName']) ?></td>
-                    <td><?= htmlentities($row['username']) ?></td>
+                    <td><?= htmlentities($row['email']) ?></td>
+                    <td><?= htmlentities($row['userRole']) ?></td>
                     <div class="btn-group">
                         <td>
-                            <!-- URL Param version - old version since we are now doing it async -->
-                            <!-- <a href="deleteUser.php?userID=<?= $row['userID'] ?>" class="btn btn-primary">Delete User</a> -->
-
                             <a href="#" userID="<?= $row['userID'] ?>" class="btn btn-primary btnDeleteUser">Delete User</a>
                             <a href="#" userID="<?= $row['userID'] ?>" class="btn btn-primary btnEditUser">Edit User</a>
                         </td>
@@ -94,32 +103,39 @@ if (mysqli_num_rows($query) == 0)
         </table>
 
         <hr>
-        <h2>Create New User</h2>
-        <p>Add a new user to the database:</p>
+        <h2>Add New Staff Member</h2>
+        <p>Enrol a new member of staff to the database</p>
 
-        <form method="POST" action="./php/createNewUser.php">
-            <div class="mb-3">
-                <label for="txtUsername" class="form-label">Username</label>
-                <input type="text" class="form-control" id="txtUsername" name="txtUsername">
-            </div>
-
-            <div class="mb-3">
-                <label for="txtFirstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="txtFirstName" name="txtFirstName">
-            </div>
-
-            <div class="mb-3">
-                <label for="txtLastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="txtLastName" name="txtLastName">
-            </div>
-
-            <div class="mb-3">
-                <label for="txtPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="txtPassword" name="txtPassword">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Create New User</button>
-        </form>
+        <form method="POST" action="../php/createNewUser.php">
+        <div class="grid">
+            <label for="txtemail" class="form-label">Email</label>
+            <input type="text" class="form-control" id="txtemail" name="txtemail">
+        </div>
+        <div class="grid">
+            <label for="txtFirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="txtFirstName" name="txtFirstName">
+        </div>
+        <div class="grid">
+            <label for="txtLastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="txtLastName" name="txtLastName">
+        </div>
+        <div class="grid">
+            <label for="txtPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+        </div>
+        <div class="grid">
+            <label for="txtJobTitle" class="form-label">Job Title</label>
+            <input type="text" class="form-control" id="txtJobTitle" name="txtJobTitle">
+        </div>
+        <div class="grid">
+            <label for="userRole" class="form-label">User Role</label>
+            <select class="form-control" id="userRole" name="userRole">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <button type="submit" class="submit-button">Create New User</button>
+    </form>
     </div>
 
     <div class="modal" tabindex="-1" id="modalEditUser">
@@ -132,12 +148,12 @@ if (mysqli_num_rows($query) == 0)
 
                 <form id="formEditUser">
                     <div class="modal-body">
-                        <div class="mb-3">
+                        <div class="grid">
                             <label for="txtEditFirstName" class="form-label">First Name</label>
                             <input type="text" class="form-control" id="txtEditFirstName">
                         </div>
 
-                        <div class="mb-3">
+                        <div class="grid">
                             <label for="txtEditLastName" class="form-label">Last Name</label>
                             <input type="text" class="form-control" id="txtEditLastName">
                         </div>
@@ -150,19 +166,8 @@ if (mysqli_num_rows($query) == 0)
                 </form>
             </div>
         </div>
+        <div id="user-footer"></div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
-
-    <script src="./scripts/adminDashScripts.js"></script>
 </body>
 
 </html>

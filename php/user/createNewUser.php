@@ -2,8 +2,10 @@
 
 if (!isset($_POST['txtFirstName']) ||
     !isset($_POST['txtLastName']) ||
-    !isset($_POST['txtUsername']) ||
-    !isset($_POST['txtPassword']))
+    !isset($_POST['txtemail']) ||
+    !isset($_POST['txtPassword']) ||
+    !isset($_POST['userRole']) ||
+    !isset($_POST['txtJobTitle']))
 {
     die("Missing POST values");
 }
@@ -13,20 +15,22 @@ require_once("_connect.php");
 
 $firstName = $_POST['txtFirstName'];
 $lastName = $_POST['txtLastName'];
-$username = $_POST['txtUsername'];
+$email = $_POST['txtemail'];
 $password = $_POST['txtPassword'];
+$userRole = $_POST['userRole'];
+$jobTitle = $_POST['txtJobTitle'];
 
 // Hash the password
 $password = password_hash($password, PASSWORD_BCRYPT);
 
 // 1) Create the SQL query
-$SQL = "INSERT INTO `users` (`userID`, `firstName`, `lastName`, `username`, `password`, `TIMESTAMP`) VALUES (NULL, ?, ?, ?, ?, current_timestamp())";
+$SQL = "INSERT INTO `users` (`firstName`, `lastName`, `email`, `password`, `jobTitle`, `userRole`, `TIMESTAMP`) VALUES (?, ?, ?, ?, ?, ?, current_timestamp())";
 
 // 2) Prepare the SQL query
 $stmt = mysqli_prepare($connect, $SQL);
 
 // 3) Bind the parameters - s = string, i = integer, d = double, b = blob
-mysqli_stmt_bind_param($stmt, "ssss", $firstName, $lastName, $username, $password);
+mysqli_stmt_bind_param($stmt, "ssssss", $firstName, $lastName, $email, $password, $jobTitle, $userRole);
 
 // 4) Execute the statement
 $query = mysqli_stmt_execute($stmt);
@@ -39,3 +43,4 @@ else
 {
     echo "User creation failed!";
 }
+?>
