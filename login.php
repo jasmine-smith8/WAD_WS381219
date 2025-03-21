@@ -19,6 +19,11 @@ if (isset($_SESSION['userRole'])) {
     <link rel="stylesheet" href="/pages/styles/login-styles.css">
     <link rel="shortcut icon" href="/pages/img/fire.png" type="image/x-icon">
 </head>
+<header>
+    <nav class="navbar">
+        <a class="navbar-brand">HateHire</a>
+    </nav>
+</header>
 <body class="container">
     <main class="login-form-container">
         <h2 class="login-title">Login Page</h2>

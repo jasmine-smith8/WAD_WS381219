@@ -11,7 +11,7 @@ $SQL = "SELECT `courseTitle`, `courseDescription`  FROM `courses` WHERE `courseI
 
 $stmt = mysqli_prepare($connect, $SQL);
 
-mysqli_stmt_bind_param($stmt, "i", $$courseID);
+mysqli_stmt_bind_param($stmt, "i", $courseID);
 
 mysqli_stmt_execute($stmt);
 

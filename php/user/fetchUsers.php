@@ -1,5 +1,7 @@
 <?php
-require_once("_connect.php");
+header('Content-Type: application/json');
+
+require_once("../php/_connect.php");
 
 $SQL = "SELECT * FROM users";
 $result = mysqli_query($connect, $SQL);

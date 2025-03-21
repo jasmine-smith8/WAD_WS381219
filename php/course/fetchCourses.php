@@ -1,13 +1,15 @@
 <?php
-require_once("_connect.php");
+header('Content-Type: application/json');
+
+require_once("../_connect.php");
 
 $SQL = "SELECT * FROM courses";
 $result = mysqli_query($connect, $SQL);
 
-$users = array();
+$courses = array();
 while ($row = mysqli_fetch_assoc($result)) {
-    $users[] = $row;
+    $courses[] = $row;
 }
 
-echo json_encode($users);
+echo json_encode($courses);
 ?>

@@ -22,7 +22,6 @@ function showAlert(message, type) {
 }
 
 $(document).ready(function() {
-    // Example usage:
-    // showAlert('Login successful!', 'success');
-    // showAlert('Invalid credentials, please try again.', 'error');
+    showAlert('Login successful!', 'success');
+    showAlert('Invalid credentials, please try again.', 'error');
 });

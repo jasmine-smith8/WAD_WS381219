@@ -1,6 +1,6 @@
 body {
     background-color: #D99293;; /* Bootstrap warning color */
-    font-family: space mono, serif;
+    font-family: "Source Code Pro", monospace;
 }
 
 .container {
@@ -31,8 +31,21 @@ p{
     color: #710000; /* Light Red */
 }
 
-.btn-group .btn {
-    margin-right: 0.5rem;
+.btn-group .btnEditUser{
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #710000; /* Light Red */
+    border-color: #D99293;
+    border-radius: 0.3rem;
+    color: #FFFFFF;
+}
+.btn-group .btnDeleteUser{
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #710000; /* Light Red */
+    border-color: #D99293;
+    border-radius: 0.3rem;
+    color: #FFFFFF;
 }
 
 .btn-primary {

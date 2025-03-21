@@ -7,7 +7,7 @@ if (!isset($_POST['courseID']) ||
     die("You dun goofed! 😢");
 }
 
-require_once("_connect.php");
+require_once("/php/_connect.php");
 
 $courseID = $_POST['courseID'];
 $courseTitle = $_POST['courseTitle'];
@@ -17,7 +17,7 @@ $SQL = "UPDATE `courses` SET `courseTitle` = ?, `courseDescription` = ? WHERE `c
 
 $stmt = mysqli_prepare($connect, $SQL);
 
-mysqli_stmt_bind_param($stmt, "ssi", $firstName, $lastName, $userID);
+mysqli_stmt_bind_param($stmt, "ssi", $courseTitle, $courseDescription, $courseID);
 
 $query = mysqli_stmt_execute($stmt);
 

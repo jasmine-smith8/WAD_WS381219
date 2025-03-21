@@ -1,10 +1,9 @@
 <?php
-
 if (!isset($_POST['userID'])) die("You dun goofed! 😢");
 
 $userID = $_POST['userID'];
 
-require_once("_connect.php");
+require_once("../php/_connect.php");
 
 // Make a prepared query to the server to get the firstName and lastName
 $SQL = "SELECT `firstName`, `lastName`  FROM `users` WHERE `userID` = ? LIMIT 1";

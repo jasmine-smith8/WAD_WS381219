@@ -1,6 +1,6 @@
 function updateUsersTable() {
     $.ajax({
-        url: '../php/fetchUsers.php',
+        url: '/php/user/fetchUsers.php',
         method: 'GET',
         dataType: 'json',
         success: function(users) {
@@ -30,9 +30,6 @@ function updateUsersTable() {
             // Reinitialize DataTable
             new DataTable('#usersTable');
         },
-        error: function(xhr, status, error) {
-            console.error('Error fetching users:', error);
-        }
     });
 }
 
@@ -53,7 +50,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Make an AJAX request using the userID to the backend and delete the user.
-                $.post('../php/deleteUser.php', { userID: userID }, function (response) {
+                $.post('/php/user/deleteUser.php', { userID: userID }, function (response) {
                     if (response == 'true') {
                         // Reload the page
                         Swal.fire({
@@ -85,7 +82,7 @@ $(document).ready(function() {
         let userID = $(this).attr('userID');
     
         // Gets the user data from the backend
-        $.post('../php/fetchUserEditData.php', { userID: userID }, function (res) {
+        $.post('/php/user/fetchUserEditData.php', { userID: userID }, function (res) {
             let user = JSON.parse(res);
     
             $('#txtEditFirstName').val(user.firstName);
@@ -104,7 +101,7 @@ $(document).ready(function() {
         let lastName = $('#txtEditLastName').val();
     
         // Sets the data to be sent to the backend
-        $.post('../php/updateUserEditData.php',
+        $.post('php/user/updateUserEditData.php',
             {
                 userID: editUserID,
                 firstName: firstName,

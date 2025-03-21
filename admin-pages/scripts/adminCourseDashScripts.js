@@ -1,6 +1,6 @@
 function updateCoursesTable() {
     $.ajax({
-        url: '../php/fetchCourses.php',
+        url: 'php/course/fetchCourseEditData.php',
         method: 'GET',
         dataType: 'json',
         success: function(courses) {
@@ -11,17 +11,17 @@ function updateCoursesTable() {
                 let row = `
                     <tr>
                         <th scope="row"><img class="rounded-circle"
-                            src="https://proficon.appserver.uk/api/identicon/${course.CourseID}.svg"
+                            src="/img/fire.png"
                             alt="Icon for User" width="50" height="50"></th>
-                        <td>${htmlentities(course.Title)}</td>
-                        <td>${htmlentities(course.Description)}</td>
-                        <td>${htmlentities(course.Date)}</td>
-                        <td>${htmlentities(course.Duration)}</td>
-                        <td>${htmlentities(course.MaxAttendees)}</td>
+                        <td>${htmlentities(course.courseTitle)}</td>
+                        <td>${htmlentities(course.courseDescription)}</td>
+                        <td>${htmlentities(course.courseDate)}</td>
+                        <td>${htmlentities(course.courseDuration)}</td>
+                        <td>${htmlentities(course.maxAttendees)}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="#" userID="${course.CourseID}" class="btn btn-primary btnDeleteUser">Delete User</a>
-                                <a href="#" userID="${course.CourseID}" class="btn btn-primary btnEditUser">Edit User</a>
+                                <a href="#" courseID="${course.courseID}" class="btn btn-primary btnDeleteCourse">Delete Course</a>
+                                <a href="#" courseID="${course.courseID}" class="btn btn-primary btnEditCourse">Edit Course</a>
                             </div>
                         </td>
                     </tr>
@@ -55,7 +55,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Make an AJAX request using the userID to the backend and delete the user.
-                $.post('../php/deleteCourse.php', { courseID: courseID }, function (response) {
+                $.post('php/course/deleteCourse.php', { courseID: courseID }, function (response) {
                     if (response == 'true') {
                         // Reload the page
                         Swal.fire({
@@ -87,15 +87,15 @@ $(document).ready(function() {
         let courseID = $(this).attr('courseID');
     
         // Gets the user data from the backend
-        $.post('../php/fetchCourseEditData.php', { userID: userID }, function (res) {
+        $.post('php/course/fetchCourseEditData.php', { userID: userID }, function (res) {
             let user = JSON.parse(res);
     
             $('#txtEditFirstName').val(user.firstName);
             $('#txtEditLastName').val(user.lastName);
     
-            editUserID = userID;
+            editCourseID = courseID;
            
-            $('#modalEditUser').modal('show');
+            $('#modalEditCourse').modal('show');
         });
     });
     
@@ -106,9 +106,9 @@ $(document).ready(function() {
         let lastName = $('#txtEditLastName').val();
     
         // Sets the data to be sent to the backend
-        $.post('../php/updateUserEditData.php',
+        $.post('php/course/updateCourseEditData.php',
             {
-                userID: editUserID,
+                courseID: editCourseID,
                 firstName: firstName,
                 lastName: lastName 
             },
