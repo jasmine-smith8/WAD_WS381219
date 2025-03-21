@@ -9,7 +9,7 @@ $courseID = $_POST['courseID'];
 
 require_once("_connect.php");
 
-$SQL = "DELETE FROM `users` WHERE `courseID` = ?";
+$SQL = "DELETE FROM `courses` WHERE `courseID` = ?";
 
 $stmt = mysqli_prepare($connect, $SQL);
 

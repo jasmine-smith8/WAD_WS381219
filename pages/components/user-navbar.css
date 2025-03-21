@@ -59,7 +59,7 @@
     gap: 15px;
     display: flex;
     align-items: center;
-    margin-right: 0;
+    margin-right: 20px;
     margin-left: auto;
 }
 
@@ -70,7 +70,7 @@
 
 .user-navbar .search-input {
     border: none;
-    font-family: space mono, serif;
+    font-family: "Source Code Pro", monospace;
     border-radius: 15px;
     padding: 10px 15px;
     margin-right: 10px;
@@ -111,7 +111,7 @@
     border: none;
     color: white;
     text-decoration: none;
-    font-family: "Space Mono", serif;
+    font-family: "Source Code Pro", monospace;
     font-size: medium;
 }
 

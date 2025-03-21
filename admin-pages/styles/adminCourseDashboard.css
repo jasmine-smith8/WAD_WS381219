@@ -1,65 +1,103 @@
 body {
-    background-color: #D99293;; 
-    font-family: space mono, serif;
+    background-color: #D99293; /* Bootstrap warning color */
+    font-family: "Source Code Pro", monospace;
+    margin: 0;
+    padding: 0;
+    color: #710000; /* Consistent text color */
 }
 
-.main-content {
-    margin-top: 70px;
-}
-
-h1, h2 {
-    color: #EC8787; /* Dark Red */
-    text-align: center;
-}
-p{
-    color: #710000; /* Light Red */
-    text-align: center;
-}
-
-.table {
-    margin-top: 1rem;
-}
-
-.table th, .table td {
-    vertical-align: middle;
-    color: #710000 /* Light Red */
-}
-.form-label {
-    color: #710000; /* Light Red */
-}
-
-.btn-group .btn {
-    margin-right: 0.5rem;
-}
-
-.btn-primary {
-    background-color: #710000; /* Light Red */
-    border-color: #D99293;
-}
-
-.btn-primary:hover {
-    background-color: #EC8787; /* Dark Red */
-    border-color: #EC8787;
-}
-.submit-button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #710000; /* Light Red */
-    border-color: #D99293;
-    border-radius: 0.3rem;
-    color: #FFFFFF;
-}
-.submit-button:hover {
-    background-color: #EC8787; /* Dark Red */
-    border-color: #EC8787;
-}
-
-.modal-content {
+th {
     background-color: #FFEEEE; /* Light Red */
-    border: 1px solid #D99293;
-    border-radius: 0.3rem;
+    padding: 12px; /* Increased padding for better spacing */
+    text-align: left;
+    color: #710000; /* Light Red */
+    font-weight: bold; /* Emphasize table headers */
+    border-bottom: 2px solid #D99293; /* Add a border for separation */
 }
 
-.modal-header {
-    border-bottom: 1px solid #D99293;
+td {
+    padding: 12px; /* Increased padding for better readability */
+    border-bottom: 1px solid #D99293; /* Light Red */
+    color: #710000; /* Light Red */
+}
+
+.container .table {
+    margin-top: 1.5rem; /* Increased margin for better spacing */
+    background-color: #710000; /* Dark red background */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    overflow: hidden; /* Prevent content overflow */
+    width: 100%; /* Full width for responsiveness */
+    border-collapse: collapse; /* Remove gaps between table cells */
+    color: white; /* Ensure text is readable on dark background */
+}
+
+.btn-group {
+    display: inline-block;
+    gap: 10px; /* Consistent spacing between buttons */
+    margin-top: 1rem; /* Add spacing above the button group */
+}
+
+.btnDeletecourse {
+    color: white;
+    background-color: #710000; /* Light Red */
+    padding: 8px 16px; /* Increased padding for better clickability */
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #D99293; /* Light Red */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    font-size: 14px; /* Standardized font size */
+    cursor: pointer; /* Pointer cursor for buttons */
+}
+
+.btnDeletecourse:hover {
+    background-color: #8B0000; /* Slightly darker red on hover */
+}
+
+.btnEditcourse {
+    color: white;
+    background-color: #710000; /* Light Red */
+    padding: 8px 16px; /* Increased padding for better clickability */
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #D99293; /* Light Red */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    font-size: 14px; /* Standardized font size */
+    cursor: pointer; /* Pointer cursor for buttons */
+}
+
+.btnEditcourse:hover {
+    background-color: #8B0000; /* Slightly darker red on hover */
+}
+
+.submit-button {
+    background-color: #710000; /* Dark Red */
+    color: white;
+    border: 1px solid #D99293; /* Light Red */
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.submit-button:hover {
+    background-color: #EC8787; /* Lighter Red for hover effect */
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    color: white;
+}
+@media (max-width: 768px) {
+    .container .table {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+    th, td {
+        padding: 8px; /* Reduce padding for smaller screens */
+    }
+
+    .btn-group {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 5px; /* Reduce gap for smaller screens */
+    }
 }

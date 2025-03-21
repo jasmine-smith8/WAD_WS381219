@@ -7,7 +7,7 @@ if (!isset($_POST['userID']) ||
     die("You dun goofed! 😢");
 }
 
-require_once("_connect.php");
+require_once("../php/_connect.php");
 
 $userID = $_POST['userID'];
 $firstName = $_POST['firstName'];

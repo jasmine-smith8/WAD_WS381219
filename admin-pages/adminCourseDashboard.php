@@ -21,7 +21,7 @@ if ($_SESSION['userRole'] != 'admin')
 require_once("../php/_connect.php");
 
 // SQL Query
-$SQL = "SELECT * FROM users";
+$SQL = "SELECT * FROM courses";
 
 // Run the query using the database connection and the above query
 $query = mysqli_query($connect, $SQL);
@@ -29,7 +29,7 @@ $query = mysqli_query($connect, $SQL);
 // Check to see how many rows are returned
 if (mysqli_num_rows($query) == 0)
 {
-    die("There are no users!");
+    die("There are no courses!");
 }
 
 ?>
@@ -73,6 +73,7 @@ if (mysqli_num_rows($query) == 0)
                     <th scope="col">Course Date</th>
                     <th scope="col">Course Duration</th>
                     <th scope="col">Max Attendees</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
 
@@ -87,17 +88,19 @@ if (mysqli_num_rows($query) == 0)
                     $courseDescription = isset($row['courseDescription']) ? htmlentities($row['courseDescription']) : 'N/A';
                     $courseDate = isset($row['courseDate']) ? htmlentities($row['courseDate']) : 'N/A';
                     $courseDuration = isset($row['courseDuration']) ? htmlentities($row['courseDuration']) : 'N/A';
+                    $maxAttendees = isset($row['maxAttendees']) ? htmlentities($row['maxAttendees']) : 'N/A';
                     ?>
                 <tr>
-                    <th scope="row"><i class="fa-solid fa-course"></i><?= $courseID ?></th>
+                    <th scope="row"><i class="course"></i><?= $courseID ?></th>
                     <td><?= $courseTitle ?></td>
                     <td><?= $courseDescription ?></td>
                     <td><?= $courseDate ?></td>
                     <td><?= $courseDuration ?></td>
+                    <td><?= $maxAttendees ?></td>
                     <div class="btn-group">
                         <td>
-                            <a href="#" courseID="<?= $courseID ?>" class="btn btn-primary btnDeletecourse">Delete course</a>
-                            <a href="#" courseID="<?= $courseID ?>" class="btn btn-primary btnEditcourse">Edit course</a>
+                            <a href="#" courseID="<?= $courseID ?>" class="btnDeletecourse">Delete course</a>
+                            <a href="#" courseID="<?= $courseID ?>" class="btnEditcourse">Edit course</a>
                         </td>
                     </div>
                 </tr>
@@ -111,7 +114,7 @@ if (mysqli_num_rows($query) == 0)
         <h2>Add New Course</h2>
         <p>Add a new course to the database</p>
 
-        <form method="POST" action="../php/createNewCourse.php" onsubmit="formatDate()">
+        <form method="POST" action="php/course/createNewCourse.php" onsubmit="formatDate()">
             <div class="grid">
                 <label for="courseTitle" class="form-label">Course Title</label>
                 <input type="text" class="form-control" id="courseTitle" name="courseTitle">
