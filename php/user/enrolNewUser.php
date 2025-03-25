@@ -19,7 +19,6 @@ mysqli_stmt_execute($checkStmt);
 $result = mysqli_stmt_get_result($checkStmt);
 
 if (mysqli_num_rows($result) > 0) {
-    // User is already enrolled
     echo "User is already enrolled in this course.";
     exit;
 }

@@ -1,81 +1,158 @@
-body {
-    background-color: #D99293;; /* Bootstrap warning color */
-    font-family: "Source Code Pro", monospace;
-}
 
+body{
+    background-color: #D99293; 
+    font-family: "Source Code Pro", monospace;
+    margin: 0;
+    padding: 0;
+    color: #710000; 
+}
 .container {
     background-color: #FFEEEE; /* Light Red */
     padding: 2rem;
     margin-top: 2rem;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Bootstrap shadow-sm */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); 
+    display: grid;
 }
 
 h1, h2 {
-    color: #EC8787; /* Dark Red */
+    color: #710000; /* Dark Red */
     text-align: center;
-}
-p{
-    color: #710000; /* Light Red */
-    text-align: center;
-}
-
-.table {
-    margin-top: 1rem;
 }
 
 .table th, .table td {
     vertical-align: middle;
     color: #710000 /* Light Red */
 }
-.form-label {
-    color: #710000; /* Light Red */
-}
-
-.btn-group .btnEditUser{
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #710000; /* Light Red */
-    border-color: #D99293;
-    border-radius: 0.3rem;
-    color: #FFFFFF;
-}
-.btn-group .btnDeleteUser{
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #710000; /* Light Red */
-    border-color: #D99293;
-    border-radius: 0.3rem;
-    color: #FFFFFF;
-}
-
-.btn-primary {
-    background-color: #710000; /* Light Red */
-    border-color: #D99293;
-}
-
-.btn-primary:hover {
-    background-color: #EC8787; /* Dark Red */
-    border-color: #EC8787;
-}
-.submit-button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #710000; /* Light Red */
-    border-color: #D99293;
-    border-radius: 0.3rem;
-    color: #FFFFFF;
-}
-.submit-button:hover {
-    background-color: #EC8787; /* Dark Red */
-    border-color: #EC8787;
-}
-
-.modal-content {
+.table tr {
     background-color: #FFEEEE; /* Light Red */
-    border: 1px solid #D99293;
+}
+
+.container .table {
+    background-color: #FFFFFF; /* Dark Red */
+    border-radius: 8px;
+    width: 100%;
+    color: white;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    gap: 10px;
+    text-align: center;
+}
+
+.btn-group {
+    display: inline-block;
+    gap: 50px; /* Consistent spacing between buttons */
+    margin-top: 50px; /* Add spacing above the button group */
+}
+
+.btnDeleteUser {
+    color: white;
+    background-color: #710000; /* Light Red */
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #D99293; /* Light Red */
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    cursor: pointer;
+}
+.btnDeleteUser:hover {
+    background-color: #8B0000; /* Slightly darker red on hover */
+}
+.btnEditUser{
+    color: white;
+    background-color: #710000; /* Light Red */
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #D99293; /* Light Red */
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    cursor: pointer;
+}
+.btnEditUser:hover {
+    background-color: #8B0000; /* Slightly darker red on hover */
+}
+
+.btn {
+    background-color: #710000; /* Light Red */
+    border-color: #D99293;
     border-radius: 0.3rem;
 }
 
-.modal-header {
-    border-bottom: 1px solid #D99293;
+.btn:hover {
+    background-color: #EC8787; /* Dark Red */
+    border-color: #EC8787;
+}
+
+.secondary-container .submit-button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #710000; /* Light Red */
+    border-color: #D99293;
+    border-radius: 0.3rem;
+    color: #FFFFFF;
+    align-items: center;
+    justify-content: center;
+}
+
+.secondary-container .submit-button:hover {
+    background-color: #EC8787; /* Dark Red */
+    border-color: #EC8787;
+}
+p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.secondary-container {
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); 
+    display: grid;
+    place-items: center;
+}
+
+.grid .form-label {
+    font-weight: bold;
+    gap: 10px;
+}
+.grid .form-control {
+    padding: 10px;
+    border-radius: 0.3rem;
+    border: 1px solid #D99293;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+/* Modal content */
+.modal-dialog {
+    background-color: #fff;
+    margin: 10% auto; /* Center the modal */
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%; /* Adjust width as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Close button */
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
 }

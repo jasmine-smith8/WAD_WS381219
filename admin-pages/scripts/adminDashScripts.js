@@ -1,6 +1,6 @@
 function updateUsersTable() {
     $.ajax({
-        url: '/php/user/fetchUsers.php',
+        url: '/../../php/user/fetchUsers.php',
         method: 'GET',
         dataType: 'json',
         success: function(users) {
@@ -50,7 +50,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Make an AJAX request using the userID to the backend and delete the user.
-                $.post('/php/user/deleteUser.php', { userID: userID }, function (response) {
+                $.post('/../../php/user/deleteUser.php', { userID: userID }, function (response) {
                     if (response == 'true') {
                         // Reload the page
                         Swal.fire({
@@ -82,7 +82,7 @@ $(document).ready(function() {
         let userID = $(this).attr('userID');
     
         // Gets the user data from the backend
-        $.post('/php/user/fetchUserEditData.php', { userID: userID }, function (res) {
+        $.post('/../../php/user/fetchUserEditData.php', { userID: userID }, function (res) {
             let user = JSON.parse(res);
     
             $('#txtEditFirstName').val(user.firstName);
@@ -101,7 +101,7 @@ $(document).ready(function() {
         let lastName = $('#txtEditLastName').val();
     
         // Sets the data to be sent to the backend
-        $.post('php/user/updateUserEditData.php',
+        $.post('/../../php/user/updateUserEditData.php',
             {
                 userID: editUserID,
                 firstName: firstName,
@@ -127,6 +127,31 @@ $(document).ready(function() {
                     });
                 }
         });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modalEditUser');
+    const openModalButton = document.getElementById('openModal'); 
+    const closeModalButtons = document.querySelectorAll('#closeModal, #closeModalFooter');
+
+    // Open modal
+    openModalButton.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
+
+    // Close modal
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    });
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
     });
 });
 

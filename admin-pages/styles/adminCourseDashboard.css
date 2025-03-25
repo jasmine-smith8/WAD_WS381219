@@ -1,8 +1,6 @@
 body {
     background-color: #D99293; /* Bootstrap warning color */
     font-family: "Source Code Pro", monospace;
-    margin: 0;
-    padding: 0;
     color: #710000; /* Consistent text color */
 }
 
@@ -15,6 +13,10 @@ th {
     border-bottom: 2px solid #D99293; /* Add a border for separation */
 }
 
+h1, h2, p {
+    text-align: center; /* Center align headings */
+}
+
 td {
     padding: 12px; /* Increased padding for better readability */
     border-bottom: 1px solid #D99293; /* Light Red */
@@ -23,24 +25,46 @@ td {
 
 .container .table {
     margin-top: 1.5rem; /* Increased margin for better spacing */
-    background-color: #710000; /* Dark red background */
+    background-color: #FFEEEE; /* Dark red background */
     border-radius: 8px; /* Rounded corners for a modern look */
     overflow: hidden; /* Prevent content overflow */
     width: 100%; /* Full width for responsiveness */
-    border-collapse: collapse; /* Remove gaps between table cells */
+    border-collapse: separate;
+    border-spacing: 0 20px; /* Add spacing between rows */
     color: white; /* Ensure text is readable on dark background */
 }
 
 .btn-group {
-    display: inline-block;
-    gap: 10px; /* Consistent spacing between buttons */
-    margin-top: 1rem; /* Add spacing above the button group */
+    display: flex;
+    margin-top: 1rem; 
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+}
+.grid
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+
 }
 
-.btnDeletecourse {
+.form-control {
+    border: none; /* Remove default border */
+    border-radius: 15px; /* Rounded corners for input fields */
+    padding: 10px; /* Increased padding for better spacing */
+    margin-right: 1rem; /* Add margin between input fields */
+}
+
+.form-label {
+    font-weight: bold; /* Emphasize form labels */
+}
+
+.btnDeleteCourse, .btnEditCourse, .btnViewUsers {
     color: white;
     background-color: #710000; /* Light Red */
-    padding: 8px 16px; /* Increased padding for better clickability */
+    padding: 5px 10px; /* Increased padding for better clickability */
     text-decoration: none;
     border-radius: 5px;
     border: 1px solid #D99293; /* Light Red */
@@ -49,23 +73,7 @@ td {
     cursor: pointer; /* Pointer cursor for buttons */
 }
 
-.btnDeletecourse:hover {
-    background-color: #8B0000; /* Slightly darker red on hover */
-}
-
-.btnEditcourse {
-    color: white;
-    background-color: #710000; /* Light Red */
-    padding: 8px 16px; /* Increased padding for better clickability */
-    text-decoration: none;
-    border-radius: 5px;
-    border: 1px solid #D99293; /* Light Red */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-    font-size: 14px; /* Standardized font size */
-    cursor: pointer; /* Pointer cursor for buttons */
-}
-
-.btnEditcourse:hover {
+.btnDeleteCourse:hover, .btnEditCourse:hover, .btnViewUsers:hover {
     background-color: #8B0000; /* Slightly darker red on hover */
 }
 
@@ -80,6 +88,8 @@ td {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-align: center;
+    justify-content: center;
+
 }
 
 .submit-button:hover {
@@ -87,6 +97,46 @@ td {
     transform: scale(1.05); /* Slight zoom effect on hover */
     color: white;
 }
+
+.duration-container {
+    display: flex;
+    align-items: center;
+}
+
+.duration-container .form-control {
+    width: 60px; /* Adjust width as needed */
+    margin-right: 5px;
+}
+
+.duration-container .duration-text {
+    font-size: 14px;
+    color: #710000; /* Dark Red */
+}
+
+.custom-date-picker {
+    appearance: none; /* Remove default browser styling */
+    -webkit-appearance: none; /* For Safari */
+    background-color: #FFEEEE;
+    border: 1px solid #710000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    color: #8B0000;
+    width: 100%;
+    max-width: 300px; /* Adjust width as needed */
+}
+
+/* Focus effect for the input */
+.custom-date-picker:focus {
+    border-color: #EC8787;
+    outline: none;
+    box-shadow: 0 0 5px #D99293;
+}
+
+.modal{
+    display: none;
+}
+
 @media (max-width: 768px) {
     .container .table {
         font-size: 14px; /* Adjust font size for smaller screens */

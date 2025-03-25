@@ -45,68 +45,76 @@ if (mysqli_num_rows($query) == 0)
     <link rel="shortcut icon" href="/pages/img/fire.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function() {
-        $("#admin-navbar").load("/admin-pages/components/admin-navbar.html");
-        $("#user-footer").load("/pages/components/user-footer.html");
-    });
-  </script>
-</head>
-<body class="main-content">
-    <header id="admin-navbar"></header>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="./scripts/adminDashScripts.js"></script>
+    <script src="/admin-pages/scripts/adminDashScripts.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#admin-navbar").load("/admin-pages/components/admin-navbar.html");
+        $("#user-footer").load("/pages/components/user-footer.html");
+    });
+</script>
+</head>
+<body class="main-content">
+<header id="admin-navbar"></header>
     <div class="container">
         <h1>Staff Management</h1>
         <hr>
 
-        <table class="table" id="usersTable">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Access Level</th>
-                    <th scope="col">Options</th>
-                </tr>
-            </thead>
+            <table class="table" id="usersTable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Job Title</th>
+                        <th scope="col">Access Level</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <?php
-                // Output the users using fetch_assoc
-                // FYI: We could also use fetch_array, but fetch_assoc fetches each row one at a time, which is more efficient for large datasets
-                while ($row = mysqli_fetch_assoc($query))
-                {
-                ?>
-                <tr>
-                    <th scope="row"><i class="user"></i><?= $row['userID'] ?></th>
-                    <td><?= htmlentities($row['firstName']) ?></td>
-                    <td><?= htmlentities($row['lastName']) ?></td>
-                    <td><?= htmlentities($row['email']) ?></td>
-                    <td><?= htmlentities($row['userRole']) ?></td>
-                    <div class="btn-group">
+                <tbody>
+                    <?php
+                    // Output the users using fetch_assoc
+                    // FYI: We could also use fetch_array, but fetch_assoc fetches each row one at a time, which is more efficient for large datasets
+                    while ($row = mysqli_fetch_assoc($query)) {
+                        $userID = $row['userID'];
+                        $firstName = $row['firstName'];
+                        $lastName = $row['lastName'];
+                        $email = $row['email'];
+                        $jobTitle = $row['jobTitle'];
+                        $userRole = $row['userRole'];
+                    ?>
+                    <tr>
+                        <th scope="row"><i class="user"></i><?= htmlentities($row['userID']) ?></th>
+                        <td><?= htmlentities($row['firstName']) ?></td>
+                        <td><?= htmlentities($row['lastName']) ?></td>
+                        <td><?= htmlentities($row['email']) ?></td>
+                        <td><?= htmlentities($row['jobTitle'])?></td>
+                        <td><?= htmlentities($row['userRole']) ?></td>
+                        <div class="btn-group">
                         <td>
-                            <a href="#" userID="<?= $row['userID'] ?>" class="btnDeleteUser">Delete User</a>
-                            <a href="#" userID="<?= $row['userID'] ?>" class="btnEditUser">Edit User</a>
+                            <a href="#" userID="<?= $userID ?>" class="btnDeleteUser">Delete User</a>
+                            <a href="#" userID="<?= $userID ?>" id="openModal" class="btnEditUser">Edit User</a>
                         </td>
                     </div>
-                </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </body>
         <hr>
         <h2>Add New Staff Member</h2>
         <p>Enrol a new member of staff to the database</p>
-
-        <form method="POST" action="../php/createNewUser.php">
+        <div class="secondary-container">
+        <form method="POST" action="../php/user/createNewUser.php">
         <div class="grid">
             <label for="txtemail" class="form-label">Email</label>
             <input type="text" class="form-control" id="txtemail" name="txtemail">
@@ -137,13 +145,14 @@ if (mysqli_num_rows($query) == 0)
         <button type="submit" class="submit-button">Create New User</button>
     </form>
     </div>
+</div>
 
-    <div class="modal" tabindex="-1" id="modalEditUser">
+        <div class="modal" id="modalEditUser">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" id="closeModal">&times;</button>
                 </div>
 
                 <form id="formEditUser">
@@ -160,14 +169,14 @@ if (mysqli_num_rows($query) == 0)
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save User</button>
+                        <button type="button" class="btn" id="closeModalFooter">Close</button>
+                        <button type="submit" class="btn">Save User</button>
                     </div>
                 </form>
             </div>
         </div>
-        <div id="user-footer"></div>
     </div>
+    <div id="user-footer"></div>
 </body>
 
 </html>

@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 if (!isset($_POST['userID'])) die("You dun goofed! 😢 Please give me a URL param");
 
 $userID = $_POST['userID'];
-require_once("../php/_connect.php");
+require_once("../_connect.php");
 
 $SQL = "DELETE FROM `users` WHERE `userID` = ?";
 

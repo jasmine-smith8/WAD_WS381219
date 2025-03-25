@@ -7,7 +7,7 @@ if (!isset($_POST['courseID']) ||
     die("You dun goofed! 😢");
 }
 
-require_once("/php/_connect.php");
+require_once("../_connect.php");
 
 $courseID = $_POST['courseID'];
 $courseTitle = $_POST['courseTitle'];

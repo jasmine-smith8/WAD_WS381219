@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: #710000; /* Dark Red */
 }
 
 body, html {
@@ -24,7 +25,6 @@ body, html {
     text-align: center;
     padding: 5px 5px;
     font-weight: 700;
-    color: white;
     margin: 0;
 }
 

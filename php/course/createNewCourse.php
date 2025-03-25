@@ -9,7 +9,7 @@ if (!isset($_POST['courseTitle']) ||
 }
 
 // Require the connection file
-require_once("_connect.php");
+require_once("../_connect.php");
 
 $courseTitle = $_POST['courseTitle'];
 $courseDesc = $_POST['courseDescription'];
@@ -31,7 +31,7 @@ $query = mysqli_stmt_execute($stmt);
 
 if ($query)
 {
-    header("Location: ../index.php");
+    header("Location: ../../admin-pages/adminCourseDashboard.php");
 }
 else
 {

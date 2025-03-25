@@ -7,7 +7,7 @@ if (!isset($_POST['courseID'])) die("You dun goofed! 😢 Please give me a URL p
 
 $courseID = $_POST['courseID'];
 
-require_once("_connect.php");
+require_once("../_connect.php");
 
 $SQL = "DELETE FROM `courses` WHERE `courseID` = ?";
 

@@ -28,7 +28,7 @@ $(document).ready(function () {
 
         if (courseID) {
             $.ajax({
-                url: '/php/enrolUser.php',
+                url: '/../../php/enrolUser.php',
                 type: 'POST',
                 data: { userID, courseID },
                 success: function (response) {
@@ -75,7 +75,7 @@ $(document).ready(function () {
 
 function updateCoursesTable() {
     $.ajax({
-        url: '../php/course/fetchCourses.php',
+        url: '/../../php/course/fetchCourses.php',
         method: 'GET',
         dataType: 'json',
         success: function(courses) {
@@ -113,6 +113,7 @@ function updateCoursesTable() {
         }
     });
 }
+
 function htmlentities(str) {
     if (typeof str !== 'string') {
         return str; // Return as-is if not a string

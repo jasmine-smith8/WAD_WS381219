@@ -1,10 +1,9 @@
 <?php
-
 if (!isset($_POST['courseID'])) die("You dun goofed! 😢");
 
 $courseID = $_POST['courseID'];
 
-require_once("_connect.php");
+require_once("../_connect.php");
 
 // Make a prepared query to the server to get the firstName and lastName
 $SQL = "SELECT `courseTitle`, `courseDescription`  FROM `courses` WHERE `courseID` = ? LIMIT 1";
