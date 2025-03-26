@@ -11,7 +11,7 @@ if (!isset($_POST['txtFirstName']) ||
 }
 
 // Require the connection file
-require_once("../php/_connect.php");
+require_once("../_connect.php");
 
 $firstName = $_POST['txtFirstName'];
 $lastName = $_POST['txtLastName'];
@@ -37,7 +37,7 @@ $query = mysqli_stmt_execute($stmt);
 
 if ($query)
 {
-    header("Location: ../index.php");
+    header("Location: /../../index.php");
 }
 else
 {

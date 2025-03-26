@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 
 require_once("../_connect.php");
 
-$SQL = "SELECT * FROM courses";
+$SQL = "SELECT * FROM courses WHERE courseDate >= CURDATE() ORDER BY courseDate ASC";
 $result = mysqli_query($connect, $SQL);
 
 $courses = array();

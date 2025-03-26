@@ -4,10 +4,10 @@ if (!isset($_POST['courseID']) ||
     !isset($_POST['courseTitle']) ||
     !isset($_POST['courseDescription']))
 {
-    die("You dun goofed! 😢");
+    die("Missing course ID, course title or course description");
 }
 
-require_once("/php/_connect.php");
+require_once("../_connect.php");
 
 $courseID = $_POST['courseID'];
 $courseTitle = $_POST['courseTitle'];
@@ -27,5 +27,5 @@ if ($query)
 }
 else
 {
-    echo "User update failed!";
+    echo "Course update failed!";
 }

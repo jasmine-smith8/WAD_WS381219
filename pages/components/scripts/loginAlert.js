@@ -20,8 +20,3 @@ function showAlert(message, type) {
         });
     }, 3000);
 }
-
-$(document).ready(function() {
-    showAlert('Login successful!', 'success');
-    showAlert('Invalid credentials, please try again.', 'error');
-});

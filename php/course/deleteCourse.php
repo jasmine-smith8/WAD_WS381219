@@ -3,11 +3,11 @@
 // Enable PHP Errors (Otherwise you'll just get a 500 status code)
 ini_set('display_errors', 1);
 
-if (!isset($_POST['courseID'])) die("You dun goofed! 😢 Please give me a URL param");
+if (!isset($_POST['courseID'])) die("Missing course ID");
 
 $courseID = $_POST['courseID'];
 
-require_once("_connect.php");
+require_once("../_connect.php");
 
 $SQL = "DELETE FROM `courses` WHERE `courseID` = ?";
 

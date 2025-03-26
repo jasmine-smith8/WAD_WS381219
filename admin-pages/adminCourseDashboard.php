@@ -48,8 +48,9 @@ if (mysqli_num_rows($query) == 0)
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="./scripts/adminCourseDashScripts.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
             $("#admin-navbar").load("/admin-pages/components/admin-navbar.html");
@@ -57,9 +58,8 @@ if (mysqli_num_rows($query) == 0)
         });
     </script>
 </head>
-
-<body class="main-content">
 <header id="admin-navbar"></header>
+<body class="main-content">
     <div class="container">
         <h1>Course Management</h1>
         <hr>
@@ -73,7 +73,7 @@ if (mysqli_num_rows($query) == 0)
                     <th scope="col">Course Date</th>
                     <th scope="col">Course Duration</th>
                     <th scope="col">Max Attendees</th>
-                    <th scope="col"></th>
+                    <th scope="col">Options</th>
                 </tr>
             </thead>
 
@@ -95,14 +95,15 @@ if (mysqli_num_rows($query) == 0)
                     <td><?= $courseTitle ?></td>
                     <td><?= $courseDescription ?></td>
                     <td><?= $courseDate ?></td>
-                    <td><?= $courseDuration ?></td>
-                    <td><?= $maxAttendees ?></td>
-                    <div class="btn-group">
-                        <td>
-                            <a href="#" courseID="<?= $courseID ?>" class="btnDeletecourse">Delete course</a>
-                            <a href="#" courseID="<?= $courseID ?>" class="btnEditcourse">Edit course</a>
-                        </td>
+                    <td><?= $courseDuration ," hours" ?></td>
+                    <td><?= $maxAttendees ," spaces"?></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" courseID="<?= $row['courseID'] ?>" class="btnDeleteCourse">Delete course</a>
+                            <a href="#" courseID="<?= $row['courseID'] ?>" class="btnEditCourse" id="openModal">Edit course</a>
+                            <a href="#" courseID="<?= $row['courseID'] ?>" class="btnViewUsers" id="openModalView">View Attendees</a>
                     </div>
+                    </td>
                 </tr>
                 <?php
                 }
@@ -114,22 +115,25 @@ if (mysqli_num_rows($query) == 0)
         <h2>Add New Course</h2>
         <p>Add a new course to the database</p>
 
-        <form method="POST" action="php/course/createNewCourse.php" onsubmit="formatDate()">
+        <form method="POST" action="../php/course/createNewCourse.php">
             <div class="grid">
                 <label for="courseTitle" class="form-label">Course Title</label>
                 <input type="text" class="form-control" id="courseTitle" name="courseTitle">
             </div>
             <div class="grid">
-                <label for="courseDesc" class="form-label">Course Description</label>
-                <input type="text" class="form-control" id="courseDesc" name="courseDescription">
+                <label for="courseDescription" class="form-label">Course Description</label>
+                <input type="text" class="form-control" id="courseDescription" name="courseDescription">
             </div>
             <div class="grid">
                 <label for="courseDate" class="form-label">Course Date</label>
-                <input type="date" class="form-control" id="courseDate" name="courseDate">
+                <input type="date" class="form-control custom-date-picker" id="courseDate" name="courseDate">
             </div>
             <div class="grid">
                 <label for="courseDur" class="form-label">Course Duration</label>
-                <input type="time" class="form-control" id="courseDur" name="courseDuration">
+                <div class="duration-container">
+                    <input type="number" class="form-control" id="courseDur" name="courseDuration" min="1" max="24">
+                    <span class="duration-text">hours</span>
+                </div>
             </div>
             <div class="grid">
                 <label for="maxAttendees" class="form-label">Max Attendees</label>
@@ -139,43 +143,60 @@ if (mysqli_num_rows($query) == 0)
         </form>
     </div>
     <script>
-    function formatDate() {
-        const dateInput = document.getElementById('courseDate');
-        const dateValue = new Date(dateInput.value);
-        const formattedDate = `${dateValue.getFullYear()}/${('0' + (dateValue.getMonth() + 1)).slice(-2)}/${('0' + dateValue.getDate()).slice(-2)}`;
-        dateInput.value = formattedDate;
-    }
     </script>
 
-    <div class="modal" tabindex="-1" id="modalEditcourse">
+    <div class="modal" tabindex="-1" id="modalEditCourse">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Course</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" id="closeModal" data-bs-dismiss="modal"></button>
                 </div>
 
-                <form id="formEditcourse">
+                <form id="formEditCourse">
                     <div class="modal-body">
                         <div class="grid">
                             <label for="editCourseTitle" class="form-label">Course Title</label>
-                            <input type="text" class="form-control" id="editCourseTitle">
+                            <input type="text" class="form-control" id="editCourseTitle" />
                         </div>
 
                         <div class="grid">
-                            <label for="editCourseDesc" class="form-label">Course Description</label>
-                            <input type="text" class="form-control" id="editCourseDesc">
+                            <label for="editcourseDescription" class="form-label">Course Description</label>
+                            <input type="text" class="form-control" id="editcourseDescription" />
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save Course</button>
+                        <button type="button" class="btn" id="closeModalFooter" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn">Save Course</button>
                     </div>
                 </form>
             </div>
         </div>
+    </div>
+    <div class="modal" tabindex="-1" id="modalViewUsers">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">View Attendees</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeModalViewUsers"></button>
+            </div>
+            <div class="modal-body">
+                <div class="grid">
+                    <div id="displayEnrolledUsers">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" id="closeModalFooterViewUsers" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
         <div id="user-footer"></div>
+        <div id="user-footer"></div>
+    </div>
+<div id="user-footer"></div>
     </div>
 </body>
 

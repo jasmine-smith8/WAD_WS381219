@@ -61,9 +61,10 @@ if (isset($_SESSION['userRole'])) {
                 data: $(form).serialize(),
                 success: function(response) {
                     if (response == 'true') {
+                        showAlert('Login successful!', 'success');
                         window.location.href = 'index.php';
                     } else {
-                        showAlert("An error occurred: " + response);
+                        showAlert('Invalid credentials, please try again.', 'error', response);
                     }
                 }
             });
