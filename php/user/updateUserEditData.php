@@ -4,7 +4,7 @@ if (!isset($_POST['userID']) ||
     !isset($_POST['firstName']) ||
     !isset($_POST['lastName']))
 {
-    die("You dun goofed! 😢");
+    die("Missing user ID, first name or last name");
 }
 
 require_once("../_connect.php");

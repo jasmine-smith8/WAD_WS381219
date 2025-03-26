@@ -3,7 +3,7 @@
 // Enable PHP Errors (Otherwise you'll just get a 500 status code)
 ini_set('display_errors', 1);
 
-if (!isset($_POST['userID'])) die("You dun goofed! 😢 Please give me a URL param");
+if (!isset($_POST['userID'])) die("Missing user ID");
 
 $userID = $_POST['userID'];
 require_once("../_connect.php");

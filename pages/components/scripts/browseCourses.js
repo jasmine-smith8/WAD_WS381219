@@ -11,8 +11,8 @@ $(document).ready(function () {
         }
     });
 
-    // Handle "Enrol" button click
-    $(document).on('click', '.btnEnrolUser', function (e) {
+    // Handle "enroll" button click
+    $(document).on('click', '.btnEnrollUser', function (e) {
         e.preventDefault();
         const courseID = $(this).attr('courseID');
         const userID = sessionStorage.getItem('userID');
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
         if (courseID) {
             $.ajax({
-                url: '/../../php/enrolUser.php',
+                url: '/../../php/enrollUser.php',
                 type: 'POST',
                 data: { userID, courseID },
                 success: function (response) {
@@ -37,7 +37,7 @@ $(document).ready(function () {
                         if (res.success) {
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Enrolled',
+                                title: 'enrolled',
                                 text: res.message,
                             }).then(() => {
                                 updateCoursesTable();
@@ -63,7 +63,7 @@ $(document).ready(function () {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Failed to enrol in the course. Please try again later.',
+                        text: 'Failed to enroll in the course. Please try again later.',
                     });
                 },
             });
@@ -97,7 +97,7 @@ function updateCoursesTable() {
                         <td>
                             <div class="btn-group">
                                 <a href="#" courseID="${course.courseID}" class="btn btn-primary btnViewCourse">View Course</a>
-                                <a href="#" courseID="${course.courseID}" class="btn btn-primary btnEnrolUser">Enrol</a>
+                                <a href="#" courseID="${course.courseID}" class="btn btn-primary btnenrollUser">enroll</a>
                             </div>
                         </td>
                     </tr>

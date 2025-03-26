@@ -1,7 +1,6 @@
 <?php
-header('Content-Type: application/json');
 
-if (!isset($_POST['userID'])) die("You dun goofed! 😢");
+if (!isset($_POST['userID'])) die("Missing user ID");
 
 $userID = $_POST['userID'];
 

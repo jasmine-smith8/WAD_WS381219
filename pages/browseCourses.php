@@ -59,7 +59,7 @@ if (empty($courses)) {
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="/pages/components/scripts/enrolUser.js"></script>
+<script src="/pages/components/scripts/enrollUser.js"></script>
 <script src="/pages/components/scripts/loginAlert.js"></script>
 <script>
     const userID = "<?php echo isset($_SESSION['userID']) ? $_SESSION['userID'] : ''; ?>";
@@ -92,7 +92,7 @@ if (empty($courses)) {
         <th scope="col">Course Description</th>
         <th scope="col">Course Duration</th>
         <th scope="col">Course Date</th>
-        <th scope="col">Enrolled Users</th>
+        <th scope="col">enrolled Users</th>
         <th scope="col">Max Attendees</th>
         <th scope="col">Actions</th> 
     </tr>
@@ -117,7 +117,7 @@ if (empty($courses)) {
                     <td>
                         <div class="btn-group">
                             <a href="#" courseID="<?= $row['courseID'] ?>" class="btnViewCourse">View Course</a>
-                            <a href="#" courseID="<?= $row['courseID'] ?>" class="btnEnrolUser">Enrol</a>
+                            <a href="#" courseID="<?= $row['courseID'] ?>" class="btnEnrollUser">Enroll</a>
                         </div>
                     </td>
                 </tr>

@@ -47,7 +47,7 @@ $(document).ready(function() {
             let course = JSON.parse(res);
     
             $('#editCourseTitle').val(course.courseTitle);
-            $('#editCourseDesc').val(course.courseDesc);
+            $('#editcourseDescription').val(course.courseDescription);
     
             editCourseID = courseID;
            
@@ -59,14 +59,14 @@ $(document).ready(function() {
         e.preventDefault();
     
         let courseTitle = $('#editCourseTitle').val();
-        let courseDesc = $('#editCourseDesc').val();
+        let courseDescription = $('#editcourseDescription').val();
     
         // Sets the data to be sent to the backend
         $.post('/../../php/course/updateCourseEditData.php',
             {
                 courseID: editCourseID,
                 courseTitle: courseTitle,
-                courseDesc: courseDesc 
+                courseDescription: courseDescription 
             },
             function (response) {
                 if (response == 'true') {
@@ -94,24 +94,63 @@ $(document).on('click', '.btnViewUsers', function (e) {
     e.preventDefault();
 
     let courseID = $(this).attr('courseID');
+
     // Make an AJAX POST request to fetch enrolled users
-    $.post('/../../php/user/fetchEnrolledUsers.php', {courseID: courseID}, 
-        function (response) {
+    $.post('/../../php/user/fetchEnrolledUsers.php', { courseID: courseID }, function (response) {
         try {
             const users = JSON.parse(response);
+            console.log(response);
 
-            // Build the HTML content for the enrolled users
-            let content = '<ul>';
-            users.forEach(user => {
-                content += `<li>${user.firstName} (${user.email})</li>`;
-            });
-            content += '</ul>';
+            let content = `
+                <div class="userTitle" style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: center; padding: 10px; border-bottom: 2px solid #ddd; font-weight: bold; background-color: #f9f9f9;">
+                    <span>Name</span>
+                    <span>Email</span>
+                    <span>Action</span>
+                </div>
+            `;
 
-            // Insert the content into the modal
+            if (users.length > 0) {
+                users.forEach(user => {
+                    let firstName = user.enrolledFirstNames ? htmlentities(user.enrolledFirstNames.replace(/,/g, '')) : 'N/A';
+                    let email = user.enrolledEmails ? htmlentities(user.enrolledEmails.replace(/,/g, '')) : 'N/A';
+                    let userIDs = user.enrolledUserIDs ? user.enrolledUserIDs.split(',') : [];
+
+                    // Start a row for this user
+                    content += `
+                        <div class="userRow" style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
+                            <span>${firstName}</span>
+                            <span>${email}</span>
+                            <div>
+                    `;
+
+                    // Create a "Remove" button for each user ID
+                    userIDs.forEach(userID => {
+                        let sanitizedUserID = htmlentities(userID.trim());
+
+                        content += `
+                            <button class="btnRemoveEnrollment" data-user-id="${sanitizedUserID}" data-course-id="${courseID}" 
+                                style="background-color: #710000; color: white; border: none; padding: 8px 12px; margin-right: 5px; cursor: pointer; border-radius: 5px;">
+                                Remove
+                            </button>
+                        `;
+                    });
+
+                    // Close the user row div
+                    content += `</div></div>`;
+                });
+            } else {
+                content += `
+                    <div style="text-align: center; padding: 15px; color: #777; grid-column: span 3;">
+                        No users are enrolled in this course.
+                    </div>`;
+            }
+
+            // Ensure the full content is inserted properly
             $('#displayEnrolledUsers').html(content);
 
             // Show the modal
             $('#modalViewUsers').modal('show');
+
         } catch (error) {
             console.error('Error parsing response:', error);
             $('#displayEnrolledUsers').html('<p>Error loading attendees.</p>');
@@ -121,9 +160,44 @@ $(document).on('click', '.btnViewUsers', function (e) {
     });
 });
 
-// Close modal logic
-$('#closeModalViewUsers, #closeModalFooterViewUsers').on('click', function () {
-    $('#modalViewUsers').modal('hide');
+
+
+$(document).on('click', '.btnRemoveEnrollment', function (e) {
+    e.preventDefault();
+
+    let userID = $(this).attr('data-user-id');
+    let courseID = $(this).attr('data-course-id');
+
+    Swal.fire({
+        title: "Are you sure you want to remove this user?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, remove user!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post('/../../php/user/removeUserEnrollment.php', { userID: userID, courseID: courseID }, function (response) {
+                if (response == 'true') {
+                    // Reload the page
+                    Swal.fire({
+                        title: "User Removed!",
+                        text: "The user has been removed.",
+                        icon: "success",
+                        heightAuto: false
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Something went wrong!",
+                        text: response,
+                        icon: "error",
+                        heightAuto: false
+                    });
+                }
+            });
+        }
+    });
 });
 
 

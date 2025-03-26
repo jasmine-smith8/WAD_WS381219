@@ -1,14 +1,16 @@
 .admin-navbar {
-    padding: 0;
+    background-color: #710000; /* Dark Red */
+    border-radius: 15px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .admin-navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #710000;
-    border-radius: 20px;
-    padding: 5 10px;
     width: 100%;
 }
 

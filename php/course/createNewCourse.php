@@ -12,7 +12,7 @@ if (!isset($_POST['courseTitle']) ||
 require_once("../_connect.php");
 
 $courseTitle = $_POST['courseTitle'];
-$courseDesc = $_POST['courseDescription'];
+$courseDescription = $_POST['courseDescription'];
 $courseDate = $_POST['courseDate'];
 $courseDur = $_POST['courseDuration'];
 $maxAttendees = $_POST['maxAttendees'];
@@ -24,7 +24,7 @@ $SQL = "INSERT INTO `courses` (`courseTitle`, `courseDescription`, `courseDate`,
 $stmt = mysqli_prepare($connect, $SQL);
 
 // 3) Bind the parameters - s = string, i = integer, d = double, b = blob
-mysqli_stmt_bind_param($stmt, "ssiii", $courseTitle, $courseDesc, $courseDate, $courseDur, $maxAttendees);
+mysqli_stmt_bind_param($stmt, "sssii", $courseTitle, $courseDescription, $courseDate, $courseDur, $maxAttendees);
 
 // 4) Execute the statement
 $query = mysqli_stmt_execute($stmt);

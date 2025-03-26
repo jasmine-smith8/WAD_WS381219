@@ -1,5 +1,5 @@
 <?php
-if (!isset($_POST['courseID'])) die("You dun goofed! 😢");
+if (!isset($_POST['courseID'])) die("Missing course ID");
 
 $courseID = $_POST['courseID'];
 

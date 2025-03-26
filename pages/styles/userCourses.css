@@ -42,7 +42,7 @@ th, td {
     justify-content: center; /* Center align the buttons */
 }
 
-.btnViewCourse, .btnUnEnrolUser{
+.btnViewCourse, .btnUnenrollUser{
     display: inline-block;
     padding: 5px 5px;
     text-decoration: none;
@@ -55,7 +55,7 @@ th, td {
     color: white;
 }
 
-.btnUnEnrolUser:hover, .btnViewCourse:hover {
+.btnUnenrollUser:hover, .btnViewCourse:hover {
     background-color: #EC8787; /* Darker Red */
     transform: scale(1.05);
     color: white;

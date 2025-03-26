@@ -6,13 +6,6 @@ body{
     padding: 0;
     color: #710000; 
 }
-.container {
-    background-color: #FFEEEE; /* Light Red */
-    padding: 2rem;
-    margin-top: 2rem;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); 
-    display: grid;
-}
 
 h1, h2 {
     color: #710000; /* Dark Red */
@@ -93,6 +86,7 @@ h1, h2 {
     color: #FFFFFF;
     align-items: center;
     justify-content: center;
+    font-family: "Source Code Pro", monospace;
 }
 
 .secondary-container .submit-button:hover {

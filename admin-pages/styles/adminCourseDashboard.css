@@ -23,17 +23,6 @@ td {
     color: #710000; /* Light Red */
 }
 
-.container .table {
-    margin-top: 1.5rem; /* Increased margin for better spacing */
-    background-color: #FFEEEE; /* Dark red background */
-    border-radius: 8px; /* Rounded corners for a modern look */
-    overflow: hidden; /* Prevent content overflow */
-    width: 100%; /* Full width for responsiveness */
-    border-collapse: separate;
-    border-spacing: 0 20px; /* Add spacing between rows */
-    color: white; /* Ensure text is readable on dark background */
-}
-
 .btn-group {
     display: flex;
     margin-top: 1rem; 
@@ -41,27 +30,13 @@ td {
     gap: 1rem;
     width: 100%;
 }
-.grid
-{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
 
+.form-label{
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.form-control {
-    border: none; /* Remove default border */
-    border-radius: 15px; /* Rounded corners for input fields */
-    padding: 10px; /* Increased padding for better spacing */
-    margin-right: 1rem; /* Add margin between input fields */
-}
-
-.form-label {
-    font-weight: bold; /* Emphasize form labels */
-}
-
-.btnDeleteCourse, .btnEditCourse, .btnViewUsers {
+.btnDeleteCourse, .btnEditCourse, .btnViewUsers, .btnRemoveEnrollment {
     color: white;
     background-color: #710000; /* Light Red */
     padding: 5px 10px; /* Increased padding for better clickability */
@@ -73,7 +48,7 @@ td {
     cursor: pointer; /* Pointer cursor for buttons */
 }
 
-.btnDeleteCourse:hover, .btnEditCourse:hover, .btnViewUsers:hover {
+.btnDeleteCourse:hover, .btnEditCourse:hover, .btnViewUsers:hover, .btnRemoveEnrollment:hover {
     background-color: #8B0000; /* Slightly darker red on hover */
 }
 
@@ -89,6 +64,7 @@ td {
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-align: center;
     justify-content: center;
+    gap: 10px;
 
 }
 

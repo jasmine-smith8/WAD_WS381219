@@ -121,8 +121,8 @@ if (mysqli_num_rows($query) == 0)
                 <input type="text" class="form-control" id="courseTitle" name="courseTitle">
             </div>
             <div class="grid">
-                <label for="courseDesc" class="form-label">Course Description</label>
-                <input type="text" class="form-control" id="courseDesc" name="courseDescription">
+                <label for="courseDescription" class="form-label">Course Description</label>
+                <input type="text" class="form-control" id="courseDescription" name="courseDescription">
             </div>
             <div class="grid">
                 <label for="courseDate" class="form-label">Course Date</label>
@@ -150,7 +150,7 @@ if (mysqli_num_rows($query) == 0)
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Course</h5>
-                    <button type="button" class="btn-close" id="closeModal"></button>
+                    <button type="button" class="btn-close" id="closeModal" data-bs-dismiss="modal"></button>
                 </div>
 
                 <form id="formEditCourse">
@@ -161,13 +161,13 @@ if (mysqli_num_rows($query) == 0)
                         </div>
 
                         <div class="grid">
-                            <label for="editCourseDesc" class="form-label">Course Description</label>
-                            <input type="text" class="form-control" id="editCourseDesc" />
+                            <label for="editcourseDescription" class="form-label">Course Description</label>
+                            <input type="text" class="form-control" id="editcourseDescription" />
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn" id="closeModalFooter">Close</button>
+                        <button type="button" class="btn" id="closeModalFooter" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn">Save Course</button>
                     </div>
                 </form>
@@ -179,7 +179,7 @@ if (mysqli_num_rows($query) == 0)
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">View Attendees</h5>
-                <button type="button" class="btn-close" id="closeModalViewUsers"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeModalViewUsers"></button>
             </div>
             <div class="modal-body">
                 <div class="grid">
@@ -188,7 +188,7 @@ if (mysqli_num_rows($query) == 0)
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" id="closeModalFooterViewUsers">Close</button>
+                <button type="button" class="btn" id="closeModalFooterViewUsers" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

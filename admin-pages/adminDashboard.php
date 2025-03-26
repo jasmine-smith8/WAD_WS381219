@@ -58,8 +58,8 @@ if (mysqli_num_rows($query) == 0)
     });
 </script>
 </head>
-<body class="main-content">
 <header id="admin-navbar"></header>
+<body class="main-content">
     <div class="container">
         <h1>Staff Management</h1>
         <hr>
@@ -112,7 +112,7 @@ if (mysqli_num_rows($query) == 0)
     </body>
         <hr>
         <h2>Add New Staff Member</h2>
-        <p>Enrol a new member of staff to the database</p>
+        <p>enroll a new member of staff to the database</p>
         <div class="secondary-container">
         <form method="POST" action="../php/user/createNewUser.php">
         <div class="grid">
