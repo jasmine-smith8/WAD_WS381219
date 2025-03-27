@@ -8,20 +8,20 @@ body{
 }
 
 h1, h2 {
-    color: #710000; /* Dark Red */
+    color: #710000;
     text-align: center;
 }
 
 .table th, .table td {
     vertical-align: middle;
-    color: #710000 /* Light Red */
+    color: #710000 
 }
 .table tr {
-    background-color: #FFEEEE; /* Light Red */
+    background-color: #FFEEEE; 
 }
 
 .container .table {
-    background-color: #FFFFFF; /* Dark Red */
+    background-color: #FFFFFF; 
     border-radius: 8px;
     width: 100%;
     color: white;
@@ -33,54 +33,54 @@ h1, h2 {
 
 .btn-group {
     display: inline-block;
-    gap: 50px; /* Consistent spacing between buttons */
-    margin-top: 50px; /* Add spacing above the button group */
+    gap: 50px; 
+    margin-top: 50px; 
 }
 
 .btnDeleteUser {
     color: white;
-    background-color: #710000; /* Light Red */
+    background-color: #710000; 
     padding: 8px 16px;
     text-decoration: none;
     border-radius: 5px;
-    border: 1px solid #D99293; /* Light Red */
+    border: 1px solid #D99293; 
     transition: background-color 0.3s ease;
     font-size: 14px;
     cursor: pointer;
 }
 .btnDeleteUser:hover {
-    background-color: #8B0000; /* Slightly darker red on hover */
+    background-color: #8B0000;
 }
 .btnEditUser{
     color: white;
-    background-color: #710000; /* Light Red */
+    background-color: #710000; 
     padding: 8px 16px;
     text-decoration: none;
     border-radius: 5px;
-    border: 1px solid #D99293; /* Light Red */
+    border: 1px solid #D99293; 
     transition: background-color 0.3s ease;
     font-size: 14px;
     cursor: pointer;
 }
 .btnEditUser:hover {
-    background-color: #8B0000; /* Slightly darker red on hover */
+    background-color: #8B0000;
 }
 
 .btn {
-    background-color: #710000; /* Light Red */
+    background-color: #710000; 
     border-color: #D99293;
     border-radius: 0.3rem;
 }
 
 .btn:hover {
-    background-color: #EC8787; /* Dark Red */
+    background-color: #EC8787; 
     border-color: #EC8787;
 }
 
 .secondary-container .submit-button {
     margin-top: 20px;
     padding: 10px;
-    background-color: #710000; /* Light Red */
+    background-color: #710000; 
     border-color: #D99293;
     border-radius: 0.3rem;
     color: #FFFFFF;
@@ -90,7 +90,7 @@ h1, h2 {
 }
 
 .secondary-container .submit-button:hover {
-    background-color: #EC8787; /* Dark Red */
+    background-color: #EC8787; 
     border-color: #EC8787;
 }
 p {
@@ -136,11 +136,10 @@ p {
     margin: 10% auto; /* Center the modal */
     padding: 20px;
     border-radius: 8px;
-    width: 50%; /* Adjust width as needed */
+    width: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Close button */
 .btn-close {
     background: none;
     border: none;

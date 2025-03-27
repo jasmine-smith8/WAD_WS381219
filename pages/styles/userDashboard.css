@@ -2,11 +2,11 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Source Code Pro", monospace;
-    background-color: #F0CACA; /* Light Red */
+    background-color: #F0CACA; 
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    color: #710000; /* Dark Red */
+    color: #710000; 
 }
 
 body, html {
@@ -16,6 +16,22 @@ body, html {
 
 .container {
     text-align: center;
+}
+
+.scrolling-title {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    animation: scroll-text 10s linear infinite;
+  }
+
+  @keyframes scroll-text {
+    0% {
+  transform: translateX(100%);
+    }
+    100% {
+  transform: translateX(-100%);
+    }
 }
 
 .title {
@@ -54,3 +70,40 @@ body, html {
     gap: 20px;
     padding: 20px;
 }
+
+.subheading h4 {
+    font-size: 1.5rem;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.body-content {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.body-content p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .gallery img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }

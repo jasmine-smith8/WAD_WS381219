@@ -80,7 +80,6 @@ if (mysqli_num_rows($query) == 0)
                 <tbody>
                     <?php
                     // Output the users using fetch_assoc
-                    // FYI: We could also use fetch_array, but fetch_assoc fetches each row one at a time, which is more efficient for large datasets
                     while ($row = mysqli_fetch_assoc($query)) {
                         $userID = $row['userID'];
                         $firstName = $row['firstName'];
@@ -90,6 +89,7 @@ if (mysqli_num_rows($query) == 0)
                         $userRole = $row['userRole'];
                     ?>
                     <tr>
+                        <!-- Output the user details -->
                         <th scope="row"><i class="user"></i><?= htmlentities($row['userID']) ?></th>
                         <td><?= htmlentities($row['firstName']) ?></td>
                         <td><?= htmlentities($row['lastName']) ?></td>
@@ -112,8 +112,9 @@ if (mysqli_num_rows($query) == 0)
     </body>
         <hr>
         <h2>Add New Staff Member</h2>
-        <p>enroll a new member of staff to the database</p>
+        <p>Enroll a new member of staff to the database</p>
         <div class="secondary-container">
+        <!-- POST request to add new user to the db -->
         <form method="POST" action="../php/user/createNewUser.php">
         <div class="grid">
             <label for="txtemail" class="form-label">Email</label>
@@ -146,8 +147,8 @@ if (mysqli_num_rows($query) == 0)
     </form>
     </div>
 </div>
-
-        <div class="modal" id="modalEditUser">
+<!-- Modal for editing user details -->
+    <div class="modal" id="modalEditUser">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -169,7 +170,7 @@ if (mysqli_num_rows($query) == 0)
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn" id="closeModalFooter">Close</button>
+                        <button type="button" class="btn" id="closeModalFooter" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn">Save User</button>
                     </div>
                 </form>

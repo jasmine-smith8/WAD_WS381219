@@ -11,7 +11,8 @@ if (!isset($_POST['courseID'])){
 $courseID = $_POST['courseID'];
 
 require_once("../_connect.php");
-
+// prepare SQL query to get enrolledUsers by counting the number of userIDs in the userCourse table
+// The GROUP_CONCAT function is used to concatenate the userIDs, first names, and emails of the enrolled users
 $query = "SELECT c.courseID, c.courseTitle, COUNT(uc.userID) AS enrolledUsers,
 GROUP_CONCAT(uc.userID SEPARATOR ', ') AS enrolledUserIDs,
 GROUP_CONCAT(u.firstName SEPARATOR ', ') AS enrolledFirstNames,

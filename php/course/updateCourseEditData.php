@@ -13,6 +13,7 @@ $courseID = $_POST['courseID'];
 $courseTitle = $_POST['courseTitle'];
 $courseDescription = $_POST['courseDescription'];
 
+// Make a prepared query to the server to update the courseTitle and courseDescription
 $SQL = "UPDATE `courses` SET `courseTitle` = ?, `courseDescription` = ? WHERE `courseID` = ?";
 
 $stmt = mysqli_prepare($connect, $SQL);

@@ -1,7 +1,6 @@
 <?php
 
-// Database connection - in an ideal world, this would be in a separate .env file, but for the sake of simplicity, it's here 😇
-// These credentials are for Jack Biggs' database, please change them to your own credentials
+// Database connection - in an ideal world, this would be in a separate .env file, but for the sake of simplicity, it's here 
 $host = "plesk.remote.ac";
 $email = "WS381219_JasmineSmith";
 $password = "29Vfb00_s";
@@ -13,5 +12,5 @@ $connect = mysqli_connect($host, $email, $password, $dbname);
 // If the connection fails, kill the script and output an error message
 if (!$connect)
 {
-    die("Connection to database has failed! Sad times 😢");
+    die("Connection to database has failed!");
 }

@@ -13,6 +13,7 @@ $userID = $_POST['userID'];
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 
+// Make a prepared query to the server to update the firstName and lastName based on the user ID
 $SQL = "UPDATE `users` SET `firstName` = ?, `lastName` = ? WHERE `userID` = ?";
 
 $stmt = mysqli_prepare($connect, $SQL);

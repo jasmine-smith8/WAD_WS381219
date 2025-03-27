@@ -1,26 +1,30 @@
 body {
-    background-color: #D99293; /* Bootstrap warning color */
+    background-color: #D99293; 
     font-family: "Source Code Pro", monospace;
-    color: #710000; /* Consistent text color */
+    color: #710000; /*Consistent text color */
 }
 
 th {
-    background-color: #FFEEEE; /* Light Red */
-    padding: 12px; /* Increased padding for better spacing */
+    background-color: #FFEEEE; 
+    padding: 12px; 
     text-align: left;
-    color: #710000; /* Light Red */
+    color: #710000; 
     font-weight: bold; /* Emphasize table headers */
     border-bottom: 2px solid #D99293; /* Add a border for separation */
 }
 
-h1, h2, p {
-    text-align: center; /* Center align headings */
+h2, p {
+    text-align: center; 
+}
+h1{
+    text-align: center; 
+    font-weight: bold;
 }
 
 td {
-    padding: 12px; /* Increased padding for better readability */
-    border-bottom: 1px solid #D99293; /* Light Red */
-    color: #710000; /* Light Red */
+    padding: 12px; 
+    border-bottom: 1px solid #D99293; 
+    color: #710000; 
 }
 
 .btn-group {
@@ -38,24 +42,24 @@ td {
 
 .btnDeleteCourse, .btnEditCourse, .btnViewUsers, .btnRemoveEnrollment {
     color: white;
-    background-color: #710000; /* Light Red */
-    padding: 5px 10px; /* Increased padding for better clickability */
+    background-color: #710000;
+    padding: 5px 10px;
     text-decoration: none;
     border-radius: 5px;
-    border: 1px solid #D99293; /* Light Red */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-    font-size: 14px; /* Standardized font size */
-    cursor: pointer; /* Pointer cursor for buttons */
+    border: 1px solid #D99293;
+    transition: background-color 0.3s ease;
+    font-size: 14px; 
+    cursor: pointer; 
 }
 
 .btnDeleteCourse:hover, .btnEditCourse:hover, .btnViewUsers:hover, .btnRemoveEnrollment:hover {
-    background-color: #8B0000; /* Slightly darker red on hover */
+    background-color: #8B0000; 
 }
 
 .submit-button {
-    background-color: #710000; /* Dark Red */
+    background-color: #710000; 
     color: white;
-    border: 1px solid #D99293; /* Light Red */
+    border: 1px solid #D99293; 
     border-radius: 5px;
     padding: 10px 20px;
     font-size: 16px;
@@ -64,13 +68,13 @@ td {
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-align: center;
     justify-content: center;
-    gap: 10px;
-
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .submit-button:hover {
-    background-color: #EC8787; /* Lighter Red for hover effect */
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    background-color: #EC8787; 
+    transform: scale(1.05); /* Expand effect on hover */
     color: white;
 }
 
@@ -80,13 +84,13 @@ td {
 }
 
 .duration-container .form-control {
-    width: 60px; /* Adjust width as needed */
+    width: 60px; 
     margin-right: 5px;
 }
 
 .duration-container .duration-text {
     font-size: 14px;
-    color: #710000; /* Dark Red */
+    color: #710000;
 }
 
 .custom-date-picker {
@@ -99,7 +103,7 @@ td {
     font-size: 14px;
     color: #8B0000;
     width: 100%;
-    max-width: 300px; /* Adjust width as needed */
+    max-width: 300px; 
 }
 
 /* Focus effect for the input */
@@ -109,6 +113,7 @@ td {
     box-shadow: 0 0 5px #D99293;
 }
 
+/* Modal is hidden by default */
 .modal{
     display: none;
 }

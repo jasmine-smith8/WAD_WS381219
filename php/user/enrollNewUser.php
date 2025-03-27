@@ -3,7 +3,6 @@ if (!isset($_POST['userID']) || !isset($_POST['courseID'])) {
     die("Missing POST values");
 }
 
-// Require the connection file
 require_once("../_connect.php");
 
 $userID = $_POST['userID'];

@@ -13,6 +13,7 @@ $(document).ready(function() {
             confirmButtonText: "Yes, delete course!"
         }).then((result) => {
             if (result.isConfirmed) {
+                // Remove the course data from the database
                 $.post('../../php/course/deleteCourse.php', { courseID: courseID }, function (response) {
                     if (response == 'true') {
                         // Reload the page
@@ -95,12 +96,11 @@ $(document).on('click', '.btnViewUsers', function (e) {
 
     let courseID = $(this).attr('courseID');
 
-    // Make an AJAX POST request to fetch enrolled users
+    // Makes a POST request to fetch enrolled users
     $.post('/../../php/user/fetchEnrolledUsers.php', { courseID: courseID }, function (response) {
         try {
             const users = JSON.parse(response);
-            console.log(response);
-
+            //Dynamically create the header content for the modal
             let content = `
                 <div class="userTitle" style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: center; padding: 10px; border-bottom: 2px solid #ddd; font-weight: bold; background-color: #f9f9f9;">
                     <span>Name</span>
@@ -123,7 +123,7 @@ $(document).on('click', '.btnViewUsers', function (e) {
                             <div>
                     `;
 
-                    // Create a "Remove" button for each user ID
+                    // Create a remove button for individual user IDs
                     userIDs.forEach(userID => {
                         let sanitizedUserID = htmlentities(userID.trim());
 
@@ -145,7 +145,7 @@ $(document).on('click', '.btnViewUsers', function (e) {
                     </div>`;
             }
 
-            // Ensure the full content is inserted properly
+            // Inject HTML content into the modal
             $('#displayEnrolledUsers').html(content);
 
             // Show the modal
@@ -176,9 +176,9 @@ $(document).on('click', '.btnRemoveEnrollment', function (e) {
         confirmButtonText: "Yes, remove user!"
     }).then((result) => {
         if (result.isConfirmed) {
+            // Remove the user from the course
             $.post('/../../php/user/removeUserEnrollment.php', { userID: userID, courseID: courseID }, function (response) {
                 if (response == 'true') {
-                    // Reload the page
                     Swal.fire({
                         title: "User Removed!",
                         text: "The user has been removed.",
@@ -200,7 +200,12 @@ $(document).on('click', '.btnRemoveEnrollment', function (e) {
     });
 });
 
+//add ajax call to update the admin courses table
+function updateCoursesTable() 
+{
 
+}
+//Because there is no htmlentities function in JavaScript, we need to create one.
 function htmlentities(str) {
     return $('<div/>').text(str).html();
 }

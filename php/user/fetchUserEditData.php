@@ -6,7 +6,7 @@ $userID = $_POST['userID'];
 
 require_once("../_connect.php");
 
-// Make a prepared query to the server to get the firstName and lastName
+// Make a prepared query to the server to get the firstName and lastName based on the user ID
 $SQL = "SELECT `firstName`, `lastName`  FROM `users` WHERE `userID` = ? LIMIT 1";
 
 $stmt = mysqli_prepare($connect, $SQL);

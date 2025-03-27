@@ -1,6 +1,4 @@
 <?php
-
-// Enable PHP Errors (Otherwise you'll just get a 500 status code)
 ini_set('display_errors', 1);
 
 if (!isset($_POST['courseID'])) die("Missing course ID");

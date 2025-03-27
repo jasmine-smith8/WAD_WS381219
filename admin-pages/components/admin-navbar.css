@@ -1,5 +1,7 @@
+/* This CSS adapts bootstrap styles to fit the theme of the site */
+
 .admin-navbar {
-    background-color: #710000; /* Dark Red */
+    background-color: #710000; 
     border-radius: 15px;
     padding: 10px 20px;
     display: flex;
