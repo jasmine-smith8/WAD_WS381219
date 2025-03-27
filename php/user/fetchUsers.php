@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 require_once("../php/_connect.php");
-
+// Fetch all users
 $SQL = "SELECT * FROM users";
 $result = mysqli_query($connect, $SQL);
 

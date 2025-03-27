@@ -16,7 +16,7 @@ if (isset($_SESSION['userRole'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="/pages/styles/login-styles.css">
+    <link rel="stylesheet" href="/pages/styles/loginStyles.css">
     <link rel="shortcut icon" href="/pages/img/fire.png" type="image/x-icon">
 </head>
 <header>
@@ -27,6 +27,7 @@ if (isset($_SESSION['userRole'])) {
 <body class="container">
     <main class="login-form-container">
         <h2 class="login-title">Login Page</h2>
+        <!-- Calls handleLogin function from JS-->
         <form class="login-form" onsubmit="handleLogin(event)">
             <div>
                 <label>Email:</label>
@@ -61,9 +62,11 @@ if (isset($_SESSION['userRole'])) {
                 data: $(form).serialize(),
                 success: function(response) {
                     if (response == 'true') {
+                        // this function is defined in loginAlert.js - it shows a success alert
                         showAlert('Login successful!', 'success');
                         window.location.href = 'index.php';
                     } else {
+                        // this function is defined in loginAlert.js - it shows an error alert
                         showAlert('Invalid credentials, please try again.', 'error', response);
                     }
                 }

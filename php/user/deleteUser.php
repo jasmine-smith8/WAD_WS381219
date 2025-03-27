@@ -1,13 +1,11 @@
 <?php
-
-// Enable PHP Errors (Otherwise you'll just get a 500 status code)
 ini_set('display_errors', 1);
 
 if (!isset($_POST['userID'])) die("Missing user ID");
 
 $userID = $_POST['userID'];
 require_once("../_connect.php");
-
+// Prepare SQL query to delete the user based on the user ID
 $SQL = "DELETE FROM `users` WHERE `userID` = ?";
 
 $stmt = mysqli_prepare($connect, $SQL);

@@ -1,9 +1,5 @@
 <?php
-
-// Enable PHP Errors (Otherwise you'll just get a 500 status code)
 ini_set('display_errors', 1);
-
-// Put on every page where you only want logged in users
 @session_start();
 if (!isset($_SESSION['userRole']))
 {
@@ -17,21 +13,18 @@ if ($_SESSION['userRole'] != 'admin')
     die("403 Forbidden: You are not an admin!");
 }
 
-// Include the connection file, which contains the $connect objects - this saves us from having to retype the connection code every time
 require_once("../php/_connect.php");
 
-// SQL Query
 $SQL = "SELECT * FROM courses";
 
-// Run the query using the database connection and the above query
+// Runs the query using the database connection and the above query
 $query = mysqli_query($connect, $SQL);
 
-// Check to see how many rows are returned
+// If there are no courses, display a message
 if (mysqli_num_rows($query) == 0)
 {
     die("There are no courses!");
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +73,6 @@ if (mysqli_num_rows($query) == 0)
             <tbody>
                 <?php
                 // Output the users using fetch_assoc
-                // FYI: We could also use fetch_array, but fetch_assoc fetches each row one at a time, which is more efficient for large datasets
                 while ($row = mysqli_fetch_assoc($query))
                 {
                     $courseID = isset($row['courseID']) ? $row['courseID'] : 'N/A';
@@ -91,6 +83,7 @@ if (mysqli_num_rows($query) == 0)
                     $maxAttendees = isset($row['maxAttendees']) ? htmlentities($row['maxAttendees']) : 'N/A';
                     ?>
                 <tr>
+                    <!-- Output the course details -->
                     <th scope="row"><i class="course"></i><?= $courseID ?></th>
                     <td><?= $courseTitle ?></td>
                     <td><?= $courseDescription ?></td>
@@ -98,6 +91,7 @@ if (mysqli_num_rows($query) == 0)
                     <td><?= $courseDuration ," hours" ?></td>
                     <td><?= $maxAttendees ," spaces"?></td>
                     <td>
+                        <!-- Buttons reference courseID to remove corresponding course data -->
                         <div class="btn-group">
                             <a href="#" courseID="<?= $row['courseID'] ?>" class="btnDeleteCourse">Delete course</a>
                             <a href="#" courseID="<?= $row['courseID'] ?>" class="btnEditCourse" id="openModal">Edit course</a>
@@ -114,7 +108,7 @@ if (mysqli_num_rows($query) == 0)
         <hr>
         <h2>Add New Course</h2>
         <p>Add a new course to the database</p>
-
+            <!-- Creates a POST request to add course to db -->
         <form method="POST" action="../php/course/createNewCourse.php">
             <div class="grid">
                 <label for="courseTitle" class="form-label">Course Title</label>
@@ -139,7 +133,7 @@ if (mysqli_num_rows($query) == 0)
                 <label for="maxAttendees" class="form-label">Max Attendees</label>
                 <input type="int" class="form-control" id="maxAttendees" name="maxAttendees">
             </div>
-            <button type="submit" class="submit-button">Create New Course</button>
+            <button type="submit" class="submit-button" aria-label="Create Course">Create New Course</button>
         </form>
     </div>
     <script>
@@ -167,8 +161,8 @@ if (mysqli_num_rows($query) == 0)
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn" id="closeModalFooter" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn">Save Course</button>
+                        <button type="button" class="btn" id="closeModalFooter" data-bs-dismiss="modal" role="close modal" aria-label="Close Modal">Close</button>
+                        <button type="submit" class="btn" role="submit button" aria-label="Submit Button">Save Course</button>
                     </div>
                 </form>
             </div>
@@ -179,7 +173,7 @@ if (mysqli_num_rows($query) == 0)
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">View Attendees</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeModalViewUsers"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeModalViewUsers" aria-label="Close Modal"></button>
             </div>
             <div class="modal-body">
                 <div class="grid">
@@ -188,16 +182,12 @@ if (mysqli_num_rows($query) == 0)
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" id="closeModalFooterViewUsers" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn" id="closeModalFooterViewUsers" data-bs-dismiss="modal" aria-label="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
-        <div id="user-footer"></div>
-        <div id="user-footer"></div>
-    </div>
-<div id="user-footer"></div>
-    </div>
+<div id="user-footer" aria-label="footer" role="footer"></div>
 </body>
 
 </html>

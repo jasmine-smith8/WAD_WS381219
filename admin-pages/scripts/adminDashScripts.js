@@ -49,7 +49,7 @@ $(document).ready(function() {
             confirmButtonText: "Yes, delete them!"
         }).then((result) => {
             if (result.isConfirmed) {
-                // Make an AJAX request using the userID to the backend and delete the user.
+                // Make an AJAX request (using the userID) to the backend and delete the user.
                 $.post('/../../php/user/deleteUser.php', { userID: userID }, function (response) {
                     if (response == 'true') {
                         // Reload the page
@@ -73,9 +73,7 @@ $(document).ready(function() {
             }
         });
     });
-    
     let editUserID = 0;
-    
     $(document).on('click','.btnEditUser',function(e) {
         e.preventDefault();
     
@@ -115,8 +113,7 @@ $(document).ready(function() {
                         icon: "success",
                         heightAuto: false
                     }).then(() => {
-                        // You need to change this to make it async!!
-                        window.location.reload();
+                        updateUsersTable();
                     });
                 } else {
                     Swal.fire({
@@ -127,31 +124,6 @@ $(document).ready(function() {
                     });
                 }
         });
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('modalEditUser');
-    const openModalButton = document.getElementById('openModal'); 
-    const closeModalButtons = document.querySelectorAll('#closeModal, #closeModalFooter');
-
-    // Open modal
-    openModalButton.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
-
-    // Close modal
-    closeModalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-    });
-
-    // Close modal when clicking outside of it
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
     });
 });
 

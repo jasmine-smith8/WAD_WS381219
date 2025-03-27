@@ -7,15 +7,13 @@ if (!isset($_POST['email']) || !isset($_POST['password'])) die("Missing POST dat
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-// Input Validation to be added later :)
-
+// Prepare SQL query to get the user data based on the email
 $SQL = "SELECT * FROM `users` WHERE `email` = ?";
 
 $stmt = mysqli_prepare($connect, $SQL);
 mysqli_stmt_bind_param($stmt, "s", $email);
 mysqli_stmt_execute($stmt);
 
-// Get the result from the MySQL query
 $result = mysqli_stmt_get_result($stmt);
 
 // Check if one row was returned

@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 require_once("../_connect.php");
-
+// Fetch courses with dates that have not yet passed
 $SQL = "SELECT * FROM courses WHERE courseDate >= CURDATE() ORDER BY courseDate ASC";
 $result = mysqli_query($connect, $SQL);
 

@@ -22,19 +22,14 @@ if ($_SESSION['userRole'] != 'user') {
   <link rel="stylesheet" href="/pages/components/user-footer.css">
   <title>HateHire User Platform</title>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function() {
-        $("#user-navbar").load("/pages/components/user-navbar.html");
-        $("#user-footer").load("/pages/components/user-footer.html");
-    });
-  </script>
+  <script src="/pages/components/scripts/userDashScripts.js"></script>
 </head>
 <body>
 <header id="user-navbar"></header>
   <main id="content">
     <div class="container">
       <div class="title">
-        <h3>
+        <h3 class="scrolling-title">
           Welcome to <strong>HateHire</strong>, where the work is as unique as you are!
         </h3>
       </div>
@@ -86,7 +81,18 @@ if ($_SESSION['userRole'] != 'user') {
     </div>
     <div class="subheading">
       <h4>Ready to get started?</h4>
-      <
+    </div>
+    <div class="body-content">
+      <p>With our fantastic training program, you can be a professional hater in no time!</p>
+      <p>Head over to <i>Browse Courses</i> to check out our excellent range of courses, all curated by professionals.</p>
+    </div>
+    <div class="subheading">
+      <h4>Check out some of our happy customers!</h4>
+    </div>
+    <div class="gallery">
+      <img src="/pages/img/person-1.jpg" alt="Person 1">
+      <img src="/pages/img/person-2.jpg" alt="Person 2">
+      <img src="/pages/img/person-3.jpg" alt="Person 3">
     </div>
     <div id="user-footer"></div>
   </main>

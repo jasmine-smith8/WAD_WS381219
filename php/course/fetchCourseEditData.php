@@ -5,7 +5,7 @@ $courseID = $_POST['courseID'];
 
 require_once("../_connect.php");
 
-// Make a prepared query to the server to get the firstName and lastName
+// Make a prepared query to the server to get the courseTitle and courseDescription
 $SQL = "SELECT `courseTitle`, `courseDescription`  FROM `courses` WHERE `courseID` = ? LIMIT 1";
 
 $stmt = mysqli_prepare($connect, $SQL);

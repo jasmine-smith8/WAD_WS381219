@@ -9,7 +9,7 @@ if (!isset($_POST['courseID'])){
 } 
 
 $courseID = $_POST['courseID'];
-
+// prepare SQL query to get enrolledUsers by counting the number of userIDs in the userCourse table
 $query = "SELECT 
     c.courseID, 
     c.courseTitle, 

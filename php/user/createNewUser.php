@@ -10,7 +10,6 @@ if (!isset($_POST['txtFirstName']) ||
     die("Missing POST values");
 }
 
-// Require the connection file
 require_once("../_connect.php");
 
 $firstName = $_POST['txtFirstName'];
@@ -23,16 +22,13 @@ $jobTitle = $_POST['txtJobTitle'];
 // Hash the password
 $password = password_hash($password, PASSWORD_BCRYPT);
 
-// 1) Create the SQL query
+// prepared statement to insert the user data into the database
 $SQL = "INSERT INTO `users` (`firstName`, `lastName`, `email`, `password`, `jobTitle`, `userRole`, `TIMESTAMP`) VALUES (?, ?, ?, ?, ?, ?, current_timestamp())";
 
-// 2) Prepare the SQL query
 $stmt = mysqli_prepare($connect, $SQL);
 
-// 3) Bind the parameters - s = string, i = integer, d = double, b = blob
 mysqli_stmt_bind_param($stmt, "ssssss", $firstName, $lastName, $email, $password, $jobTitle, $userRole);
 
-// 4) Execute the statement
 $query = mysqli_stmt_execute($stmt);
 
 if ($query)

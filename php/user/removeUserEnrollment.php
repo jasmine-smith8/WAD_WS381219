@@ -20,7 +20,6 @@ $SQL = "DELETE FROM `userCourse` WHERE `userID` = ? AND `courseID` = ?";
 $stmt = mysqli_prepare($connect, $SQL);
 mysqli_stmt_bind_param($stmt, "ii", $userID, $courseID);
 
-// Execute the query and return the result
 if (mysqli_stmt_execute($stmt)) {
     echo json_encode(["success" => true, "message" => "User enrollment removed successfully."]);
 } else {
