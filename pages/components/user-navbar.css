@@ -118,3 +118,30 @@
 .user-navbar .btn:hover {
     color: #F0CACA;
 }
+
+/* Responsive Styles for smaller screens */
+@media (max-width: 768px) {
+    .user-navbar .navbar-links {
+        flex-direction: column; /* Changed from row to column */
+        gap: 10px;
+        text-align: center;
+    }
+
+    .user-navbar .nav-item .btn {
+        font-size: small;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-navbar .navbar-links {
+        gap: 5px;
+    }
+
+    .user-navbar .nav-item .btn {
+        font-size: smaller;
+    }
+
+    .user-navbar .nav-link {
+        font-size: 0.9rem;
+    }
+}

@@ -1,3 +1,4 @@
+/*Database schema for the course management system*/
 CREATE TABLE users (
     userID INT AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(255) NOT NULL,

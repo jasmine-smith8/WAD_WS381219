@@ -9,7 +9,7 @@ th {
     padding: 12px; 
     text-align: left;
     color: #710000; 
-    font-weight: bold; /* Emphasize table headers */
+    font-weight: bold; 
     border-bottom: 2px solid #D99293; /* Add a border for separation */
 }
 
@@ -118,17 +118,49 @@ td {
     display: none;
 }
 
+/* Responsive styles for smaller screens */
 @media (max-width: 768px) {
     .container .table {
-        font-size: 14px; /* Adjust font size for smaller screens */
+        font-size: 14px;
     }
 
     th, td {
-        padding: 8px; /* Reduce padding for smaller screens */
+        padding: 8px;
     }
 
     .btn-group {
-        flex-direction: column; /* Stack buttons vertically */
-        gap: 5px; /* Reduce gap for smaller screens */
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .custom-date-picker {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container .table {
+        font-size: 12px;
+        overflow-x: auto;
+        display: block;
+    }
+
+    th, td {
+        padding: 6px;
+        display: block;
+        text-align: left;
+    }
+
+    .btn-group {
+        gap: 3px;
+    }
+
+    .custom-date-picker {
+        max-width: 200px;
+    }
+
+    .modal {
+        width: 90%;
+        margin: 5% auto;
     }
 }

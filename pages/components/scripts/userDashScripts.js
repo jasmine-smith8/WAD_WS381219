@@ -1,7 +1,8 @@
 $(document).ready(function() {
+    // Load the navbar and footer
     $("#user-navbar").load("/pages/components/user-navbar.html");
     $("#user-footer").load("/pages/components/user-footer.html");
-
+    // add effect to cards on hover, scale and shadow
     const cards = document.querySelectorAll('.card');
 
     cards.forEach(card => {

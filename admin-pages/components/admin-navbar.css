@@ -86,3 +86,30 @@
 .admin-navbar .btn:hover {
     color: #F0CACA;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .admin-navbar .navbar-links {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .admin-navbar .nav-item .btn {
+        font-size: small;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-navbar .navbar-links {
+        gap: 10px;
+    }
+
+    .admin-navbar .nav-item .btn {
+        font-size: smaller;
+    }
+
+    .admin-navbar .nav-link {
+        font-size: 0.9rem;
+    }
+}

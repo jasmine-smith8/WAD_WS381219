@@ -1,26 +1,27 @@
 <?php
-
-// Enable PHP Errors (Otherwise you'll just get a 500 status code)
+@session_start();
+// Enable PHP Errors 
 ini_set('display_errors', 1);
 
-// Put on every page where you only want logged in users
-@session_start();
+// Include the database connection
+require_once("../php/_connect.php");
+
+// Check if the user is logged in and redirect to the login page if not
 if (!isset($_SESSION['userRole']))
 {
     header("Location: login.php");
     die();
 }
 
+// Check if the user is not an admin
 if ($_SESSION['userRole'] != 'admin')
 {
+    // If the user is not an admin, return a 403 Forbidden error
     http_response_code(403);
     die("403 Forbidden: You are not an admin!");
 }
 
-// Include the connection file, which contains the $connect objects - this saves us from having to retype the connection code every time
-require_once("../php/_connect.php");
-
-// SQL Query
+// SQL Query to select all user details
 $SQL = "SELECT * FROM users";
 
 // Run the query using the database connection and the above query
@@ -58,22 +59,21 @@ if (mysqli_num_rows($query) == 0)
     });
 </script>
 </head>
-<header id="admin-navbar"></header>
+<header id="admin-navbar" aria-label="Admin Navigation Bar"></header>
 <body class="main-content">
     <div class="container">
-        <h1>Staff Management</h1>
+        <h1 aria-label="Staff Management Section">Staff Management</h1>
         <hr>
-
-            <table class="table" id="usersTable">
+            <table class="table" id="usersTable" aria-label="Users Table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Job Title</th>
-                        <th scope="col">Access Level</th>
-                        <th scope="col">Options</th>
+                        <th scope="col" aria-label="User ID Column">#</th>
+                        <th scope="col" aria-label="First Name Column">First Name</th>
+                        <th scope="col" aria-label="Last Name Column">Last Name</th>
+                        <th scope="col" aria-label="Email Column">Email</th>
+                        <th scope="col" aria-label="Job Title Column">Job Title</th>
+                        <th scope="col" aria-label="Access Level Column">Access Level</th>
+                        <th scope="col" aria-label="Options Column">Options</th>
                     </tr>
                 </thead>
 
@@ -90,16 +90,16 @@ if (mysqli_num_rows($query) == 0)
                     ?>
                     <tr>
                         <!-- Output the user details -->
-                        <th scope="row"><i class="user"></i><?= htmlentities($row['userID']) ?></th>
-                        <td><?= htmlentities($row['firstName']) ?></td>
-                        <td><?= htmlentities($row['lastName']) ?></td>
-                        <td><?= htmlentities($row['email']) ?></td>
-                        <td><?= htmlentities($row['jobTitle'])?></td>
-                        <td><?= htmlentities($row['userRole']) ?></td>
+                        <th scope="row" aria-label="User ID"><?= htmlentities($row['userID']) ?></th>
+                        <td aria-label="First Name"><?= htmlentities($row['firstName']) ?></td>
+                        <td aria-label="Last Name"><?= htmlentities($row['lastName']) ?></td>
+                        <td aria-label="Email"><?= htmlentities($row['email']) ?></td>
+                        <td aria-label="Job Title"><?= htmlentities($row['jobTitle'])?></td>
+                        <td aria-label="Access Level"><?= htmlentities($row['userRole']) ?></td>
                         <div class="btn-group">
-                        <td>
-                            <a href="#" userID="<?= $userID ?>" class="btnDeleteUser">Delete User</a>
-                            <a href="#" userID="<?= $userID ?>" id="openModal" class="btnEditUser">Edit User</a>
+                        <td aria-label="User Options">
+                            <a href="#" userID="<?= $userID ?>" class="btnDeleteUser" aria-label="Delete User Button">Delete User</a>
+                            <a href="#" userID="<?= $userID ?>" id="openModal" class="btnEditUser" aria-label="Edit User Button">Edit User</a>
                         </td>
                     </div>
                     </tr>
@@ -111,73 +111,72 @@ if (mysqli_num_rows($query) == 0)
         </div>
     </body>
         <hr>
-        <h2>Add New Staff Member</h2>
-        <p>Enroll a new member of staff to the database</p>
+        <h2 aria-label="Add New Staff Member Section">Add New Staff Member</h2>
+        <p aria-label="Add New Staff Member Description">Enroll a new member of staff to the database</p>
         <div class="secondary-container">
         <!-- POST request to add new user to the db -->
-        <form method="POST" action="../php/user/createNewUser.php">
+        <form method="POST" action="../php/user/createNewUser.php" aria-label="Add New Staff Member Form">
         <div class="grid">
             <label for="txtemail" class="form-label">Email</label>
-            <input type="text" class="form-control" id="txtemail" name="txtemail">
+            <input type="email" class="form-control" id="txtemail" name="txtemail" aria-label="Email Input">
         </div>
         <div class="grid">
             <label for="txtFirstName" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="txtFirstName" name="txtFirstName">
+            <input type="text" class="form-control" id="txtFirstName" name="txtFirstName" aria-label="First Name Input">
         </div>
         <div class="grid">
             <label for="txtLastName" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="txtLastName" name="txtLastName">
+            <input type="text" class="form-control" id="txtLastName" name="txtLastName" aria-label="Last Name Input">
         </div>
         <div class="grid">
             <label for="txtPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+            <input type="password" class="form-control" id="txtPassword" name="txtPassword" aria-label="Password Input">
         </div>
         <div class="grid">
             <label for="txtJobTitle" class="form-label">Job Title</label>
-            <input type="text" class="form-control" id="txtJobTitle" name="txtJobTitle">
+            <input type="text" class="form-control" id="txtJobTitle" name="txtJobTitle" aria-label="Job Title Input">
         </div>
         <div class="grid">
             <label for="userRole" class="form-label">User Role</label>
-            <select class="form-control" id="userRole" name="userRole">
+            <select class="form-control" id="userRole" name="userRole" aria-label="User Role Dropdown">
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
             </select>
         </div>
-        <button type="submit" class="submit-button">Create New User</button>
+        <button type="submit" class="submit-button" aria-label="Create New User Button">Create New User</button>
     </form>
     </div>
 </div>
 <!-- Modal for editing user details -->
-    <div class="modal" id="modalEditUser">
+    <div class="modal" id="modalEditUser" aria-label="Edit User Modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit User</h5>
-                    <button type="button" class="btn-close" id="closeModal">&times;</button>
+                    <h5 class="modal-title" aria-label="Edit User Modal Title">Edit User</h5>
+                    <button type="button" class="btn-close" id="closeModal" data-bs-dismiss="modal" aria-label="Close Edit User Modal"></button>
                 </div>
 
-                <form id="formEditUser">
+                <form id="formEditUser" aria-label="Edit User Form">
                     <div class="modal-body">
                         <div class="grid">
                             <label for="txtEditFirstName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="txtEditFirstName">
+                            <input type="text" class="form-control" id="txtEditFirstName" aria-label="Edit First Name Input">
                         </div>
 
                         <div class="grid">
                             <label for="txtEditLastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="txtEditLastName">
+                            <input type="text" class="form-control" id="txtEditLastName" aria-label="Edit Last Name Input">
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn" id="closeModalFooter" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn">Save User</button>
+                        <button type="button" class="btn" id="closeModalFooter" data-bs-dismiss="modal" aria-label="Close Edit User Modal Footer">Close</button>
+                        <button type="submit" class="btn" aria-label="Save Edited User Button">Save User</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div id="user-footer"></div>
+    <footer id="user-footer" aria-label="Footer Section" role="footer"></footer>
 </body>
-
 </html>

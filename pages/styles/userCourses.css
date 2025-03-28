@@ -1,10 +1,11 @@
+/* This file contains the styles for the userCourses page */
 body {
     margin: 0;
     padding: 0;
     font-family: "Source Code Pro", monospace;
     background-color: #F0CACA; 
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Added flex-direction property to stack the footer at the bottom */
     min-height: 100vh;
 }
 
@@ -26,7 +27,7 @@ table {
     background-color: #FFEEEE; 
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Added box-shadow for better UI */
 }
 
 th, td {
@@ -49,7 +50,7 @@ th, td {
     font-size: 16px;
     font-weight: bold;
     border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform property for smooth hover effect */
     text-align: center;
     background-color: #710000;
     color: white;
@@ -57,7 +58,7 @@ th, td {
 
 .btnUnenrollUser:hover, .btnViewCourse:hover {
     background-color: #EC8787;
-    transform: scale(1.05);
+    transform: scale(1.05); /* Added transform property for smooth hover effect */
     color: white;
 }
 
@@ -90,4 +91,52 @@ footer {
     text-align: center;
     padding: 10px;
     margin-top: auto;
+}
+
+/* Responsive Styles - will make elements smaller to create a better user experience to smart device users */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .btnViewCourse, .btnUnenrollUser {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    table {
+        font-size: 12px;
+        overflow-x: auto;
+        display: block;
+    }
+
+    th, td {
+        padding: 8px;
+        display: block;
+        text-align: left;
+    }
+
+    .btnViewCourse, .btnUnenrollUser {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .btn-group {
+        gap: 3px;
+    }
 }

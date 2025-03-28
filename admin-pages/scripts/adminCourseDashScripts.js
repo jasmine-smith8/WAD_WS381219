@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
     $(document).on('click','.btnDeleteCourse',function(e) {
+        // Prevent the default action of the button
         e.preventDefault();
     
         let courseID = $(this).attr('courseID');
@@ -16,13 +17,13 @@ $(document).ready(function() {
                 // Remove the course data from the database
                 $.post('../../php/course/deleteCourse.php', { courseID: courseID }, function (response) {
                     if (response == 'true') {
-                        // Reload the page
                         Swal.fire({
                             title: "Course Deleted!",
                             text: "The course has been deleted.",
                             icon: "success",
                             heightAuto: false
                         }).then(() => {
+                            // Reload the page
                             window.location.reload();
                         });
                     } else {
@@ -46,10 +47,10 @@ $(document).ready(function() {
         // Gets the user data from the backend
         $.post('/../../php/course/fetchCourseEditData.php', { courseID: courseID }, function (res) {
             let course = JSON.parse(res);
-    
+            // Populate the form fields with the user data
             $('#editCourseTitle').val(course.courseTitle);
             $('#editcourseDescription').val(course.courseDescription);
-    
+            // Store the courseID as a global variable
             editCourseID = courseID;
            
             $('#modalEditCourse').modal('show');
@@ -65,6 +66,7 @@ $(document).ready(function() {
         // Sets the data to be sent to the backend
         $.post('/../../php/course/updateCourseEditData.php',
             {
+                // Send the courseID and the new data
                 courseID: editCourseID,
                 courseTitle: courseTitle,
                 courseDescription: courseDescription 
@@ -77,6 +79,7 @@ $(document).ready(function() {
                         icon: "success",
                         heightAuto: false
                     }).then(() => {
+                        // Reload the page
                         window.location.reload();
                     });
                 } else {
@@ -91,6 +94,7 @@ $(document).ready(function() {
     });
 });
 
+// Used to display the enrolled users in a course
 $(document).on('click', '.btnViewUsers', function (e) {
     e.preventDefault();
 
@@ -110,14 +114,16 @@ $(document).on('click', '.btnViewUsers', function (e) {
             `;
 
             if (users.length > 0) {
+                // Loop through each user and create a row for them
                 users.forEach(user => {
+                    // Get the user's first name, email, and user IDs as an array and remove commas
                     let firstName = user.enrolledFirstNames ? htmlentities(user.enrolledFirstNames.replace(/,/g, '')) : 'N/A';
                     let email = user.enrolledEmails ? htmlentities(user.enrolledEmails.replace(/,/g, '')) : 'N/A';
                     let userIDs = user.enrolledUserIDs ? user.enrolledUserIDs.split(',') : [];
 
                     // Start a row for this user
                     content += `
-                        <div class="userRow" style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
+                        <div class="userRow" style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: center; padding: 10px; border-bottom: 1px solid #ddd margin-bottom=20px;">
                             <span>${firstName}</span>
                             <span>${email}</span>
                             <div>
@@ -125,20 +131,25 @@ $(document).on('click', '.btnViewUsers', function (e) {
 
                     // Create a remove button for individual user IDs
                     userIDs.forEach(userID => {
+                        // Trim and sanitize the user ID
                         let sanitizedUserID = htmlentities(userID.trim());
-
+                        //Dynamically create the remove button for the modal
+                        // Add inline styles for the button hover effect
                         content += `
-                            <button class="btnRemoveEnrollment" data-user-id="${sanitizedUserID}" data-course-id="${courseID}" 
-                                style="background-color: #710000; color: white; border: none; padding: 8px 12px; margin-right: 5px; cursor: pointer; border-radius: 5px;">
-                                Remove
-                            </button>
+                        <button class="btnRemoveEnrollment" data-user-id="${sanitizedUserID}" data-course-id="${courseID}" 
+                        style="background-color: #710000; color: white; border: none; padding: 8px 12px; margin-right: 5px; cursor: pointer; border-radius: 5px;"
+                        onmouseover="this.style.backgroundColor='#900000';" 
+                        onmouseout="this.style.backgroundColor='#710000';">
+                            Remove
+                        </button>
                         `;
                     });
 
                     // Close the user row div
                     content += `</div></div>`;
-                });
+            });
             } else {
+                // If no users are enrolled in the course, display a message
                 content += `
                     <div style="text-align: center; padding: 15px; color: #777; grid-column: span 3;">
                         No users are enrolled in this course.
@@ -152,16 +163,17 @@ $(document).on('click', '.btnViewUsers', function (e) {
             $('#modalViewUsers').modal('show');
 
         } catch (error) {
+            // If an error occurs, display an error message
             console.error('Error parsing response:', error);
             $('#displayEnrolledUsers').html('<p>Error loading attendees.</p>');
         }
     }).fail(function () {
+        // If the AJAX request fails, display an error message
         $('#displayEnrolledUsers').html('<p>Error fetching attendees.</p>');
     });
 });
 
-
-
+// Used to remove a user from a course
 $(document).on('click', '.btnRemoveEnrollment', function (e) {
     e.preventDefault();
 
@@ -185,6 +197,7 @@ $(document).on('click', '.btnRemoveEnrollment', function (e) {
                         icon: "success",
                         heightAuto: false
                     }).then(() => {
+                        //Reload the page
                         window.location.reload();
                     });
                 } else {
