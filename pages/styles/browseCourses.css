@@ -3,8 +3,8 @@ body {
     padding: 0;
     font-family: "Source Code Pro", monospace;
     background-color: #F0CACA; 
-    display: flex;
-    flex-direction: column;
+    display: flex; /* Added display property to stack the footer at the bottom */
+    flex-direction: column; 
     min-height: 100vh;
 }
 
@@ -66,8 +66,9 @@ th {
     color: white;
     font-weight: bold;
 }
+
 .pagination {
-    display: flex;
+    display: flex; 
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
@@ -83,11 +84,59 @@ i.course {
     color: #710000; 
     font-size: 18px;
 }
-
+/* Boosted padding for the footer */
 footer {
     background-color: #710000; 
     color: white;
     text-align: center;
     padding: 10px;
     margin-top: auto;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .btnViewCourse, .btnEnrollUser {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    table {
+        font-size: 12px;
+        overflow-x: auto;
+        display: block;
+    }
+
+    th, td {
+        padding: 8px;
+        display: block;
+        text-align: left;
+    }
+
+    .btnViewCourse, .btnEnrollUser {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .btn-group {
+        gap: 3px;
+    }
 }

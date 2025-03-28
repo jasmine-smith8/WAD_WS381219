@@ -1,3 +1,4 @@
+/* The userDashboard.css file contains the CSS styles for the user dashboard page.*/
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +14,13 @@ body, html {
     height: 100%;
     margin: 0;
 }
+/*Boosts the padding of the header*/
+header {
+    background-color: #710000; 
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
 
 .container {
     text-align: center;
@@ -25,6 +33,7 @@ body, html {
     animation: scroll-text 10s linear infinite;
   }
 
+/*The @keyframes scroll-text animation defines a horizontal scrolling effect - translating the text from right to left.*/
   @keyframes scroll-text {
     0% {
   transform: translateX(100%);
@@ -50,7 +59,7 @@ body, html {
 }
 
 .customer-testimony h4 {
-    display: inline-block;
+    display: inline-block; /* Added display property to align the text in the center */
     background-color: #D99293; 
     padding: 5px 15px;
     border-radius: 10px;
@@ -107,3 +116,44 @@ body, html {
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+
+/* Responsive Styles for smaller screens */
+@media (max-width: 768px) {
+    .subheading h4 {
+        font-size: 1.25rem;
+        margin-top: 30px;
+    }
+
+    .body-content p {
+        font-size: 0.9rem; 
+    }
+
+    .gallery img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .gallery {
+        gap: 15px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .subheading h4 {
+        font-size: 1rem; 
+        margin-top: 20px;
+    }
+
+    .body-content p {
+        font-size: 0.8rem; 
+    }
+
+    .gallery img {
+        width: 120px; 
+        height: 120px;
+    }
+
+    .gallery {
+        gap: 10px; 
+    }
+}

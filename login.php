@@ -1,10 +1,17 @@
 <?php
+// Enable error reporting
+ini_set('display_errors', 1);
+
 session_start();
+
+// Check the user role and redirect to the appropriate dashboard
 if (isset($_SESSION['userRole'])) {
     $userRole = $_SESSION['userRole'];
     if ($userRole == 'admin') {
+        // Redirect to the admin dashboard
         header("Location: adminDashboard.php");
     } else {
+        // Redirect to the user dashboard
         header("Location: userDashboard.php");
     }
     exit();
@@ -64,6 +71,7 @@ if (isset($_SESSION['userRole'])) {
                     if (response == 'true') {
                         // this function is defined in loginAlert.js - it shows a success alert
                         showAlert('Login successful!', 'success');
+                        sessionStorage.setItem('userID', response.userID);
                         window.location.href = 'index.php';
                     } else {
                         // this function is defined in loginAlert.js - it shows an error alert

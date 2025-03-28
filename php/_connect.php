@@ -1,5 +1,4 @@
 <?php
-
 // Database connection - in an ideal world, this would be in a separate .env file, but for the sake of simplicity, it's here 
 $host = "plesk.remote.ac";
 $email = "WS381219_JasmineSmith";

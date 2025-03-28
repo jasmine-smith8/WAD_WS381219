@@ -1,11 +1,19 @@
 <?php
+// Start the session
+session_start();
+
+// Enable error reporting
+ini_set('display_errors', 1);
+
+// Include the database connection
+require_once("../_connect.php");
+
+// Check if the userID and courseID is set
 if (!isset($_POST['userID']) || !isset($_POST['courseID'])) {
     die("Missing POST values");
 }
 
-require_once("../_connect.php");
-
-$userID = $_POST['userID'];
+$userID = $_SESSION['userID'];
 $courseID = $_POST['courseID'];
 $enrolled = 1; 
 $attendees = 1; // Default to 1 attendee for a new enrollment
@@ -18,7 +26,28 @@ mysqli_stmt_execute($checkStmt);
 $result = mysqli_stmt_get_result($checkStmt);
 
 if (mysqli_num_rows($result) > 0) {
+    // If the user is already enrolled in the course, display an error message
     echo "User is already enrolled in this course.";
+    exit;
+}
+//Check if a course is already full
+$checkSQL = "SELECT `maxAttendees`, 
+                    (SELECT COUNT(`userID`) FROM `userCourse` WHERE `courseID` = ?) AS enrolledUsers 
+             FROM `courses` WHERE `courseID` = ?";
+
+$checkStmt = mysqli_prepare($connect, $checkSQL);
+
+mysqli_stmt_bind_param($checkStmt, "ii", $courseID, $courseID);
+
+mysqli_stmt_execute($checkStmt);
+
+$result = mysqli_stmt_get_result($checkStmt);
+
+$row = mysqli_fetch_assoc($result);
+
+if ($row['maxAttendees'] <= $row['enrolledUsers']) {
+    // If the course is full, display an error message
+    echo "Course is full!";
     exit;
 }
 
@@ -29,8 +58,10 @@ mysqli_stmt_bind_param($stmt, "iibi", $userID, $courseID, $enrolled, $attendees)
 $query = mysqli_stmt_execute($stmt);
 
 if ($query) {
+    // If the query is successful, return true
     echo "true";
 } else {
-    echo "enrollment creation failed!";
+    // If the query fails, display an error message
+    echo "Enrollment creation failed!";
 }
 ?>

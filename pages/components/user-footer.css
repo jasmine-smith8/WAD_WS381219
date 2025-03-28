@@ -7,3 +7,18 @@
     padding: 10px 20px;
     color: white;
 }
+/* Responsive Styles for smaller screens */
+@media (max-width: 768px) {
+    .user-footer {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-footer {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        border-radius: 10px;
+    }
+}
