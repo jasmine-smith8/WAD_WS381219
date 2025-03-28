@@ -2,9 +2,8 @@ WS381219 - Web App Module
 
 > Testing Credentials
 
-Role    Email	                    Password
-User	j.k@hatehire.co.uk	        123
-Admin	j.k-admin@hatehire.co.uk	123
+Role: User   Email:	j.k@hatehire.co.uk   Password: 123
+Role: Admin	 Email: j.k-admin@hatehire.co.uk  Password: 123
 
 Notes to examiner:
 
