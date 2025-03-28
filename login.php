@@ -37,19 +37,23 @@ if (isset($_SESSION['userRole'])) {
         <!-- Calls handleLogin function from JS-->
         <form class="login-form" onsubmit="handleLogin(event)">
             <div>
-                <label>Email:</label>
+                <label for="email">Email:</label>
                 <input
                     type="email"
+                    id="email"
                     name="email"
                     required
+                    aria-required="true"
                 />
             </div>
             <div>
-                <label>Password:</label>
+                <label for="password">Password:</label>
                 <input
                     type="password"
+                    id="password"
                     name="password"
                     required
+                    aria-required="true"
                 />
             </div>
             <button type="submit">Login</button>
